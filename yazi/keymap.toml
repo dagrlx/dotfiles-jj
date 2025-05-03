@@ -1,0 +1,94 @@
+# A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
+# If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
+"$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
+
+#### Plugins oficials ####
+
+[[manager.prepend_keymap]]
+on = ["c", "m"]
+run = "plugin chmod"
+desc = "Chmod on selected files"
+
+[[manager.prepend_keymap]]
+on = "<C-d>"
+run = "plugin diff"
+desc = "Diff the selected with the hovered file"
+
+[[manager.prepend_keymap]]
+on = "T"
+run = "plugin toggle-pane min-preview"
+desc = "Show or hide the preview pane"
+
+[[manager.prepend_keymap]]
+on = "ñ"
+run = "plugin jump-to-char"
+desc = "Jump to char"
+
+[[manager.prepend_keymap]]
+on = "X"
+run = "plugin toggle-pane max-preview"
+desc = "Maximize or restore the preview pane"
+
+[[plugin.prepend_fetchers]]
+id = "mime"
+if = "!(mime|dummy)"
+name = "*"
+run = "mime-ext"
+prio = "high"
+
+[[manager.prepend_keymap]]
+on = "l"
+run = "plugin smart-enter"
+desc = "Enter the child directory, or open the file"
+
+[[manager.prepend_keymap]]
+on = "n"
+run = "plugin smart-enter  --args='detatch'"
+desc = "Open in new window."
+
+[[manager.prepend_keymap]]
+on = "F"
+run = "plugin smart-filter"
+desc = "Smart filter"
+
+
+#### Plugin not oficials ####
+#
+# [[manager.prepend_keymap]]
+# on = "R"
+# run = "plugin rsync --args='tuxadm@sabaext'"
+# desc = "Copiando archivo via rsync a sabaext"
+
+[[manager.prepend_keymap]]
+on = "="
+run = """ shell 'printf "Mode Bits: "; read ans; chmod $ans "$@"' --block --confirm """
+desc = "chmod"
+
+[[manager.prepend_keymap]]
+on = "<C-p>"
+run = """ shell 'qlmanage -p "$@"' """
+desc = "preview archivo con quick look"
+
+[[manager.prepend_keymap]]
+on = ["j"]
+run = "plugin arrow --args=1"
+desc = "Move selection downwards, or wrap."
+
+[[manager.prepend_keymap]]
+on = ["k"]
+run = "plugin arrow --args=-1"
+desc = "Move selection downwards, or wrap."
+
+[[manager.prepend_keymap]]
+on = ["c", "a"]
+run = "plugin compress"
+desc = "Archive selected files"
+
+[[manager.prepend_keymap]]
+on = ["g", "i"]
+run = "plugin lazygit"
+desc = "run lazygit"
+
+
+[spot]
+prepend_keymap = [{ on = "<C-i>", run = "spot", desc = "Activar Spotter" }]

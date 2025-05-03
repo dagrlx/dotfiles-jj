@@ -1,0 +1,423 @@
+{pkgs, nixpkgs, ...}: with pkgs; {
+  home.packages = with pkgs; [
+    nnn # terminal file manager
+
+   #python3Full
+   #unstable-nixpkgs.python311Packages.gssapi
+
+    # archives
+    zip
+    xz
+    unzip
+    p7zip
+    unar
+
+    #Fonts
+    nerdfonts
+
+    # utils
+    mc
+    ntfs3g
+    fping
+    ripgrep # recursively searches directories for a regex pattern
+    #jq # A lightweight and flexible command-line JSON processor - Instalado con brew
+    yq-go # yaml processer https://github.com/mikefarah/yq
+    fzf # A command-line fuzzy finder
+    fzf-zsh
+    zsh-fzf-tab #Replace zsh's default completion selection menu with fzf
+    #nix-index
+
+    #lua
+
+    fd  #para buscar archivos
+    ffmpegthumbnailer # thumbnails de video necesario para yazi
+    procs  #Moderno reemplazo de ps basado e Rust
+    android-tools
+    cheat
+    coreutils-full
+    curl
+    duf
+    du-dust
+    has
+    aria2 # A lightweight multi-protocol & multi-source command-line download utility
+    socat # replacement of openbsd-netcat
+    mas #Mac App Store command-line interface
+    nmap # A utility for network discovery and security auditing
+    #httpie
+
+    nano
+    nanorc
+    sshpass
+    #tealdeer #A very fast implementation of tldr in Rust
+    tmux-mem-cpu-load
+    tmux-xpanes
+    tree
+    tree-sitter
+    #vagrant  ## Dio problemas la migrar a 23.11
+    watch
+    wifi-password
+    wget
+
+    #Plugin para zsh
+    zsh-fzf-history-search
+    zsh-fzf-tab
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+    zsh-autocomplete
+    zsh-you-should-use
+    #zsh-fast-syntax-highlighting
+
+    # misc
+    cowsay
+    file
+    which
+    tree
+    gnused
+    gnutar
+    gawk
+    zstd
+    caddy
+    gnupg
+    cacert # Equivalente en hombrew de ca-certificates
+    #zsh-powerlevel10k
+    nodejs
+    ansible
+    #stow   #Gestor de dotfile
+
+    # productivity
+    glow # markdown previewer in terminal
+
+    # K8S
+    talosctl
+    kubectl
+    k9s
+  ];
+
+
+  # ver opciones de program en https://mynixos.com/home-manager/options/programs/2
+
+  programs = {
+    info.enable = true;
+
+    bat = {
+      enable = true;
+      config = {
+        #theme = "TwoDark";
+        #theme = "Nightfox";
+        theme = "Dracula";
+        #theme = "Catppuccin-macchiato";
+      };
+    };
+
+    nix-index = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+    htop.enable = true;
+
+    gpg.enable = true;
+
+    lazygit = {enable = true;};
+
+    # modern vim
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+
+      extraConfig = ''
+
+        syntax enable
+        " colorscheme catppuccin-mocha
+        set number relativenumber
+        set cursorline
+
+        " Configuraci√≥n de Netrw
+        nnoremap <F7> :e.<CR>
+
+        " Configuraci√≥n de NeoTree
+        nnoremap <F6> :Neotree toggle<CR>   " F6 opens NEOTree
+
+        " Config para mapear tab y enter para aceptar completion
+        inoremap <silent><expr> <TAB>
+        \ coc#pum#visible() ? coc#pum#next(1) :
+        \ "\<Tab>"
+
+        " Make <CR> to accept selected completion item or notify coc.nvim to format
+        " <C-g>u breaks current undo, please make your own choice
+        inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+        " Habilitar la función iskeyword+=- para tratar TAB como carácter de tabulación
+        set iskeyword+=-
+
+        nnoremap  <C-p> <cmd>Files<CR>      "Ctrl+p para activar fzf 
+        nnoremap  <C-f> <cmd>RG<CR>         "Ctrl+f para usar ripgrep
+        nnoremap  <A-b> <cmd>Buffers<CR>    "Alt+b para listar los buffers abierto 
+        nnoremap  <A-h> <cmd>Helptags<CR>   "Ejecuta el comando Helptags (para buscar en las etiquetas de ayuda) y luego presiona Enter.
+
+      '';
+
+      plugins = with pkgs.vimPlugins; [
+        auto-pairs
+        fzf-vim
+        lf-vim
+        vim-nix
+        vim-markdown
+        LazyVim
+
+        # Otra forma de delcarar config
+        { plugin = catppuccin-nvim;
+          config = "colorscheme catppuccin-mocha";
+        }
+
+        smart-splits-nvim
+          
+        #ChatGPT-nvim
+
+        trouble-nvim #Dependencia para chatgpt
+
+        #{ plugin = gruvbox-nvim;
+        #  config = "colorscheme gruvbox ";
+        #
+        #}
+        tabby-nvim #Tab bar
+        indentLine
+        vim-lastplace #Opens document where you left it
+        auto-pairs ## Print double quotes/brackets/etc.
+        lightline-vim ## Info bar at bottom
+        indent-blankline-nvim # Indentation lines
+        #nerdtree # File Manager - set in extraConfig to F6i
+
+        neo-tree-nvim # File Manager
+        coc-nvim #auto completacion
+        coc-fzf
+
+        # telescopeea para telescope y neo-tree
+        popup-nvim
+
+        telescope-nvim
+        telescope-fzf-native-nvim
+      
+
+        #completion-nvim
+        #vim-vsnip       #source de snipper
+        #vim-vsnip-integ
+        snippets-nvim #source de snipper
+        lazy-nvim
+        lazygit-nvim
+        nvim-treesitter
+        nvim-treesitter-context
+        nvim-treesitter.withAllGrammars
+        noice-nvim
+        nui-nvim #Dependencia para Neotree
+        nvim-notify
+        nvim-web-devicons  #Complemento recomendaod para neo-tree
+        #netman-nvim #Framework para manejar remoto recursos
+      ];
+    };
+
+
+    dircolors = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+    tealdeer = {
+      enable = true;
+      settings = {
+        updates = {
+          auto_update = true;
+        };
+      };
+    };
+
+    lf = {
+      enable = true;
+
+      settings = {
+        preview = true;
+        hidden = true;
+        drawbox = true;
+        icons = true;
+        ignorecase = true;
+      };
+    };  
+
+    # A modern replacement for ‘ls’
+    # useful in bash/zsh prompt, not in nushell.
+    # En 23.11 cambio exa por eza
+    eza = {
+      enable = true;
+      enableZshIntegration = true;
+      git = true;
+      icons = true;
+    };
+
+    # skim provides a single executable: sk.
+    # Basically anywhere you would want to use grep, try sk instead.
+    skim = {
+    #  enable = true;
+    #  enableBashIntegration = true;
+      enableZshIntegration = true;
+    };
+
+    #Terminal basado en Rust 
+    #alacritty = {
+    #  enable = true;
+    #};
+
+    tmux = {
+      enable = true;
+      mouse = true;
+      tmuxp.enable = true;
+      newSession = true;
+      sensibleOnTop = true;
+     # prefix = "C-a";
+      terminal = "screen-256color";
+      historyLimit = 100000;
+      plugins = with pkgs.tmuxPlugins;
+          [
+            yank
+            better-mouse-mode
+            vim-tmux-navigator
+            tmux-fzf
+
+            {
+            plugin = catppuccin;
+            extraConfig = '' 
+              set -g @catppuccin_flavour 'macchiato'
+              #set -g @catppuccin_window_tabs_enabled on
+              #set -g @catppuccin_date_time "%H:%M"
+              set -g @catppuccin_window_left_separator "█"
+              set -g @catppuccin_window_right_separator "█ "
+              set -g @catppuccin_window_number_position "right"
+              set -g @catppuccin_window_middle_separator "  █"
+
+              set -g @catppuccin_window_default_fill "number"
+              set -g @catppuccin_window_default_text "#W"
+
+              set -g @catppuccin_window_current_fill "number"
+              set -g @catppuccin_window_current_text "#W"
+
+              set -g @catppuccin_status_modules_right "directory host session"
+  
+              set -g @catppuccin_status_left_separator  ""
+              set -g @catppuccin_status_right_separator " "
+              set -g @catppuccin_status_right_separator_inverse "no"
+              set -g @catppuccin_status_fill "icon"
+              set -g @catppuccin_status_connect_separator "no"
+
+              set -g @catppuccin_directory_text "#{pane_current_path}"
+
+            '';
+            }
+
+            {
+            plugin = resurrect;  #Restaura el ambiente de tmux despues de reiniciar el equipo
+            extraConfig = ''
+              set -g @resurrect-strategy-vim 'session'
+              set -g @resurrect-strategy-nvim 'session'
+              set -g @resurrect-capture-pane-contents 'on'
+              set -g @resurrect-processes 'ssh pgsql lazygit lf mc yazi'
+            '';
+            }
+
+            {
+            plugin = continuum;
+            extraConfig = ''
+              set -g @continuum-restore 'on'
+              #set -g @continuum-boot 'on'
+              set -g @continuum-save-interval '10'
+            '';
+            }
+            
+          ];
+
+      extraConfig = ''
+        #Opción para mantener los colores del tema catppuccin de neovim cuando se esta dentro de tmux
+        set-option -sa terminal-overrides ",xterm*:Tc"
+
+        set -g status-position top
+
+        #set -g status-right 'Continuum status: #{continuum_status}'
+
+        #set -g status-right '#[fg=white]#(id -un)@#(hostname)   #(cat /run/current-system/darwin-version)'
+
+
+        # Configuracion para mostrar correctamente image preview en yazi
+        set -g allow-passthrough on
+        set -ga update-environment TERM
+        set -ga update-environment TERM_PROGRAM
+
+        # Combinación de teclas para activar/desactivar la sincronización de paneles
+        bind-key s setw synchronize-panes on \; display-message "Sincronización de paneles activada"
+        bind-key x setw synchronize-panes off \; display-message "Sincronización de paneles desactivada"
+
+        # Easier reload of config
+        bind r source-file ~/.config/tmux/tmux.conf
+
+
+        #"set-option -g status-right '('Caracas:' #(TZ=America/Caracas date +%%H:%%M) 'Miami:' #(TZ=America/New_York date +%%H:%%M)) 'Santiago:' %Y-%m-%d %H:%M'
+
+
+    '';
+    };
+
+    zellij = {
+      enable = true;
+      #enableZshIntegration = true;
+
+      settings = {
+        theme = "catppuccin-macchiato";
+      };
+
+    };
+
+    ripgrep = {
+      enable = true;
+      arguments = [
+        "--max-columns-preview"
+        "--colors=line:style:bold"
+      ];
+    };
+
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+      defaultOptions = [
+        "--height 50%"
+        "--border"
+      ];
+      tmux.enableShellIntegration = true;
+    };
+
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+      options = [
+        #"--no-aliases"
+        "--cmd cd"
+      ];
+    };
+
+    yazi = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+    #thefuck = {
+    #  enable = true;
+    #  enableZshIntegration = true;
+    #};
+
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+
+    };
+  };
+}

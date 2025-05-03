@@ -1,0 +1,90 @@
+{
+    "name": "primerW1",
+    "tabs": [
+        {
+            "panes": [
+                {
+                    "cwd": "file://enocm1/Users/dgarciar",
+                    "height": 61,
+                    "index": 0,
+                    "is_active": true,
+                    "is_zoomed": false,
+                    "left": 0,
+                    "pane_id": "0",
+                    "pixel_height": 976,
+                    "pixel_width": 945,
+                    "top": 0,
+                    "tty": "/opt/homebrew/Cellar/yazi/0.2.5/bin/yazi",
+                    "width": 135
+                },
+                {
+                    "cwd": "file://enocm1/Users/dgarciar",
+                    "height": 30,
+                    "index": 1,
+                    "is_active": false,
+                    "is_zoomed": false,
+                    "left": 136,
+                    "pane_id": "17",
+                    "pixel_height": 480,
+                    "pixel_width": 945,
+                    "top": 0,
+                    "tty": "/opt/homebrew/Cellar/btop/1.3.2/bin/btop",
+                    "width": 135
+                },
+                {
+                    "cwd": "file://enocm1/Users/dgarciar",
+                    "height": 30,
+                    "index": 2,
+                    "is_active": false,
+                    "is_zoomed": false,
+                    "left": 136,
+                    "pane_id": "19",
+                    "pixel_height": 480,
+                    "pixel_width": 945,
+                    "top": 31,
+                    "tty": "/nix/store/iz81gl4w4ns02wc9jacypdr6wf0kbbhi-htop-3.3.0/bin/htop",
+                    "width": 135
+                }
+            ],
+            "tab_id": "0"
+        },
+        {
+            "panes": [
+                {
+                    "cwd": "file://enocm1/Users/dgarciar",
+                    "height": 61,
+                    "index": 0,
+                    "is_active": true,
+                    "is_zoomed": false,
+                    "left": 0,
+                    "pane_id": "2",
+                    "pixel_height": 976,
+                    "pixel_width": 1897,
+                    "top": 0,
+                    "tty": "/etc/profiles/per-user/dgarciar/bin/zsh",
+                    "width": 271
+                }
+            ],
+            "tab_id": "2"
+        },
+        {
+            "panes": [
+                {
+                    "cwd": "file://enocm1/Users/dgarciar",
+                    "height": 61,
+                    "index": 0,
+                    "is_active": true,
+                    "is_zoomed": false,
+                    "left": 0,
+                    "pane_id": "23",
+                    "pixel_height": 976,
+                    "pixel_width": 1897,
+                    "top": 0,
+                    "tty": "/etc/profiles/per-user/dgarciar/bin/mc",
+                    "width": 271
+                }
+            ],
+            "tab_id": "8"
+        }
+    ]
+}

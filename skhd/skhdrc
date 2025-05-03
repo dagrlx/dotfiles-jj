@@ -1,0 +1,155 @@
+# Cambiar el Enfoque de la Ventana
+# # Cambiar el enfoque de la ventana dentro del espacio
+alt - j : /opt/homebrew/bin/yabai -m window --focus south
+alt - k : /opt/homebrew/bin/yabai -m window --focus north
+alt - h : /opt/homebrew/bin/yabai -m window --focus west
+alt - l : /opt/homebrew/bin/yabai -m window --focus east
+
+# Cambiar el enfoque entre pantallas externas (izquierda y derecha)
+alt - i : /opt/homebrew/bin/yabai -m display --focus west
+alt - d : /opt/homebrew/bin/yabai -m display --focus east
+
+
+# Modificar la Disposición
+# # Rotar la disposición en el sentido de las agujas del reloj
+shift + alt - r : /opt/homebrew/bin/yabai -m space --rotate 90
+
+# Voltear a lo largo del eje y
+shift + alt - y : /opt/homebrew/bin/yabai -m space --mirror y-axis
+
+# Voltear a lo largo del eje x
+shift + alt - x : /opt/homebrew/bin/yabai -m space --mirror x-axis
+
+# Alternar ventana flotante
+shift + alt - t : /opt/homebrew/bin/yabai -m window --toggle float --grid 4:4:1:1:2:2; /opt/homebrew/bin/sketchybar --trigger window_focus
+
+
+# Modificar el Tamaño de la Ventana
+# # Maximizar una ventana
+shift + alt - m : /opt/homebrew/bin/yabai -m window --toggle zoom-fullscreen; /opt/homebrew/bin/sketchybar --trigger window_focus
+
+# Este modo cubre toda la pantalla incluyendo barra y dock
+shift + alt - f : /opt/homebrew/bin/yabai -m window --toggle native-fullscreen
+
+# Alternar zoom del padre de la ventana
+shift + alt - d : /opt/homebrew/bin/yabai -m window --toggle zoom-parent; /opt/homebrew/bin/sketchybar --trigger window_focus
+
+# Balancear el árbol de ventanas (redimensionar para ocupar el mismo área)
+shift + alt - b : /opt/homebrew/bin/yabai -m space --balance
+
+# Cambiar el split_ratio al 50%
+cmd - 5 : /opt/homebrew/bin/yabai -m config split_ratio 0.5 && /opt/homebrew/bin/yabai --restart-service
+
+# Cambiar el ratio de la ventana actual al 50%
+cmd - 1 : /opt/homebrew/bin/yabai -m window --ratio abs:0.50
+
+# make floating window fill screen
+shift + alt - up     : /opt/homebrew/bin/yabai -m window --grid 1:1:0:0:1:1
+
+# make floating window fill left-half of screen
+shift + alt - left   : /opt/homebrew/bin/yabai -m window --grid 1:2:0:0:1:1
+
+# make floating window fill right-half of screen
+shift + alt - right  : /opt/homebrew/bin/yabai -m window --grid 1:2:1:0:1:1
+
+# toggle padding and gap
+alt - g : /opt/homebrew/bin/yabai -m space --toggle padding; /opt/homebrew/bin/yabai -m space --toggle gap
+
+# toggle picture-in-picture
+alt - p : /opt/homebrew/bin/yabai -m window --toggle border --toggle pip
+
+# Modo de Redimensionamiento
+# # Establecer el color del borde de redimensionamiento
+:: resize @ : /opt/homebrew/bin/yabai -m config active_window_border_color 0xFFFF00FF
+
+# Alternar modo de redimensionamientocmd + alt - t : /opt/homebrew/bin/yabai -m window --toggle terminal || open -a 'Warp'cmd + alt - t : /opt/homebrew/bin/yabai -m window --toggle terminal || open -a 'Warp'
+resize < alt - z ; default
+default < alt - z ; resize
+
+# Comandos de redimensionamiento
+resize < left  : /opt/homebrew/bin/yabai -m window --resize left:-20:0; \
+                /opt/homebrew/bin/yabai -m window --resize right:-20:0
+resize < down  : /opt/homebrew/bin/yabai -m window --resize bottom:0:20; \
+                /opt/homebrew/bin/yabai -m window --resize top:0:20
+resize < up    : /opt/homebrew/bin/yabai -m window --resize top:0:-20; \
+                /opt/homebrew/bin/yabai -m window --resize bottom:0:-20
+resize < right : /opt/homebrew/bin/yabai -m window --resize right:20:0; \
+                /opt/homebrew/bin/yabai -m window --resize left:20:0
+
+
+# Mover Ventanas
+# # Intercambiar ventanas dentro del espacio
+shift + alt - j : /opt/homebrew/bin/yabai -m window --swap south
+shift + alt - k : /opt/homebrew/bin/yabai -m window --swap north
+shift + alt - h : /opt/homebrew/bin/yabai -m window --swap west
+shift + alt - l : /opt/homebrew/bin/yabai -m window --swap east
+
+# Mover ventanas dentro del espacio y dividir
+ctrl + alt - j : /opt/homebrew/bin/yabai -m window --warp south
+ctrl + alt - k : /opt/homebrew/bin/yabai -m window --warp north
+ctrl + alt - h : /opt/homebrew/bin/yabai -m window --warp west
+ctrl + alt - l : /opt/homebrew/bin/yabai -m window --warp east
+
+# Mover ventana a través de pantallas (izquierda y derecha)
+shift + alt - s : /opt/homebrew/bin/yabai -m window --display west; /opt/homebrew/bin/yabai -m display --focus west
+shift + alt - g : /opt/homebrew/bin/yabai -m window --display east; /opt/homebrew/bin/yabai -m display --focus east
+
+# Mover ventana al espacio anterior y siguiente
+shift + alt - p : /opt/homebrew/bin/yabai -m window --space prev
+shift + alt - n : /opt/homebrew/bin/yabai -m window --space next
+
+# Nuevo fomra de topmost para mover ventana abajo,normal,arriba 
+alt - b: /opt/homebrew/bin/yabai -m window --sub-layer below
+alt - n: /opt/homebrew/bin/yabai -m window --sub-layer normal
+alt - a: /opt/homebrew/bin/yabai -m window --sub-layer above
+
+
+# Mover ventana a un espacio específico
+shift + alt - 1 : /opt/homebrew/bin/yabai -m window --space 1 && /opt/homebrew/bin/sketchybar --trigger windows_on_spaces
+shift + alt - 2 : /opt/homebrew/bin/yabai -m window --space 2 && /opt/homebrew/bin/sketchybar --trigger windows_on_spaces
+shift + alt - 3 : /opt/homebrew/bin/yabai -m window --space 3 && /opt/homebrew/bin/sketchybar --trigger windows_on_spaces
+shift + alt - 4 : /opt/homebrew/bin/yabai -m window --space 4 && /opt/homebrew/bin/yabai -m space --focus 4 && /opt/homebrew/bin/sketchybar --trigger windows_on_spaces
+shift + alt - 5 : /opt/homebrew/bin/yabai -m window --space 5 && sleep 0.2 && /opt/homebrew/bin/sketchybar --trigger windows_on_spaces
+shift + alt - 6 : /opt/homebrew/bin/yabai -m window --space 6 && /opt/homebrew/bin/sketchybar --trigger windows_on_spaces
+shift + alt - 7 : /opt/homebrew/bin/yabai -m window --space 7 && /opt/homebrew/bin/sketchybar --trigger windows_on_spaces
+shift + alt - 8 : /opt/homebrew/bin/yabai -m window --space 8 && /opt/homebrew/bin/sketchybar --trigger windows_on_spaces
+shift + alt - 9 : /opt/homebrew/bin/yabai -m window --space 9 && /opt/homebrew/bin/sketchybar --trigger windows_on_spaces
+
+
+#Otras Modificaciones
+## Enfocar espacio rápido
+cmd + alt - z : /opt/homebrew/bin/yabai -m space --focus prev 
+cmd + alt - x : /opt/homebrew/bin/yabai -m space --focus next 
+
+# Cambiar propiedades de la ventana actual
+hyper - s : /opt/homebrew/bin/yabai -m window --toggle sticky;\
+           /opt/homebrew/bin/yabai -m window --toggle topmost;\
+           /opt/homebrew/bin/yabai -m window --toggle pip
+
+# Permite dividir o unir una ventana según su estado actual
+alt - e : /opt/homebrew/bin/yabai -m window --toggle split
+
+# Cambiar disposición del escritorio
+ctrl + alt - b : /opt/homebrew/bin/yabai -m space --layout bsp
+ctrl + alt - f : /opt/homebrew/bin/yabai -m space --layout float
+
+# Establecer punto de inserción para el contenedor enfocado
+shift + ctrl + alt - h : /opt/homebrew/bin/yabai -m window --insert west
+shift + ctrl + alt - j : /opt/homebrew/bin/yabai -m window --insert south
+shift + ctrl + alt - k : /opt/homebrew/bin/yabai -m window --insert north
+shift + ctrl + alt - l : /opt/homebrew/bin/yabai -m window --insert east
+
+# Mostrar todas las ventanas del scratchpad si son inaccesibles debido a un reinicio o bloqueo de yabai
+cmd + alt - r : /opt/homebrew/bin/yabai -m window --scratchpad recover
+
+# Alternar ventanas del scratchpad o lanzar la aplicación si no está ejecutándose
+#cmd + alt - v : /opt/homebrew/bin/yabai -m window --toggle vnc || open -a 'VNC Viewer'
+#cmd + alt - i : /opt/homebrew/bin/yabai -m window --toggle finder || open -a 'Finder'
+#cmd + alt - t : /opt/homebrew/bin/yabai -m window --toggle terminal || open -a 'Warp'
+
+# Detener/iniciar/reiniciar yabai
+ctrl + alt - q : /opt/homebrew/bin/yabai --stop-service
+ctrl + alt - s : /opt/homebrew/bin/yabai --start-service
+ctrl + alt - r : /opt/homebrew/bin/yabai --restart-service
+
+

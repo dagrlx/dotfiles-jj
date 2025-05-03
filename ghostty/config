@@ -1,0 +1,118 @@
+# Mouse
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 2
+
+# Theme
+#theme = dark:catppuccin-mocha,light:catppuccin-latte
+theme = catppuccin-mocha
+#tokyonight
+#theme = tokyonight_night
+
+# The colorspace to use for the terminal window. The default is `srgb` but
+# this can also be set to `display-p3` to use the Display P3 colorspace.
+# 
+# Changing this value at runtime will only affect new windows.
+# 
+# This setting is only supported on macOS.
+window-colorspace = display-p3
+
+# Some shaders can be found in this repo, they're usually uploaded to discord
+# https://github.com/hackrmomo/ghostty-shaders
+#custom-shader = shaders/inside-the-matrix.glsl
+#custom-shader = shaders/water.glsl
+#custom-shader = shaders/starfield.glsl
+#custom-shader = sparks-from-fire.glsl
+
+background-opacity = 0.85
+resize-overlay = always
+#background-blur-radius = 20
+
+font-family = "JetBrainsMono Nerd Font"
+font-size = 14
+
+
+# This assumes you installed tmux through brew if using macos
+#command = zsh --login -c "if command -v tmux >/dev/null 2>&1; then tmux attach || tmux; else zsh; fi"
+#command = /bin/zsh -c /opt/homebrew/bin/zellij
+#command = /bin/zsh -c zellij
+
+# Available values are: "native", "transparent", "tabs", and "hidden". (default is transparent)
+macos-titlebar-style = transparent
+#window-save-state = always
+
+window-padding-x = 10
+window-padding-y = 10
+window-padding-balance = true
+
+window-height = 36
+window-width = 130
+
+#window-position-x = 460
+#window-position-y = 140
+
+# Confirms that a surface should be closed before closing it.
+# 
+# This defaults to `true`. If set to `false`, surfaces will close without
+# any confirmation. This can also be set to `always`, which will always
+# confirm closing a surface, even if sh:window-padding-xell integration says a process isn't
+# running.
+confirm-close-surface = always
+
+
+# If `true`, the *Option* key will be treated as *Alt*. This makes terminal
+# sequences expecting *Alt* to work properly, but will break Unicode input
+# sequences on macOS if you use them via the *Alt* key. You may set this to
+# `false` to restore the macOS *Alt* key unicode sequences but this will break
+# terminal sequences expecting *Alt* to work.
+# 
+# The values `left` or `right` enable this for the left or right *Option*
+# key, respectively.
+# 
+# Note that if an *Option*-sequence doesn't produce a printable character, it
+# will be treated as *Alt* regardless of this setting. (i.e. `alt+ctrl+a`).
+macos-option-as-alt = right
+
+shell-integration-features = cursor,sudo,title
+
+#command = /Users/dgarciar/.dotfiles/rio/start_nushell.sh
+
+keybind = global:ctrl+y=toggle_visibility
+keybind = global:cmd+ç=toggle_quick_terminal
+
+# keybindings
+keybind = cmd+b>r=reload_config
+keybind = cmd+b>x=close_surface
+keybind = cmd+f=write_screen_file:open
+
+keybind = cmd+b>n=new_window
+
+# tabs 
+keybind = cmd+b>c=new_tab
+keybind = cmd+b>shift+l=next_tab
+keybind = cmd+b>shift+h=previous_tab
+keybind = cmd+b>comma=move_tab:-1
+keybind = cmd+b>period=move_tab:1
+
+# quick tab switch
+keybind = cmd+b>1=goto_tab:1
+keybind = cmd+b>2=goto_tab:2
+keybind = cmd+b>3=goto_tab:3
+keybind = cmd+b>4=goto_tab:4
+keybind = cmd+b>5=goto_tab:5
+keybind = cmd+b>6=goto_tab:6
+keybind = cmd+b>7=goto_tab:7
+keybind = cmd+b>8=goto_tab:8
+keybind = cmd+b>9=goto_tab:9
+
+# split
+keybind = cmd+b>¡=new_split:right
+keybind = cmd+b>-=new_split:down
+
+keybind = cmd+b>j=goto_split:bottom
+keybind = cmd+b>k=goto_split:top
+keybind = cmd+b>h=goto_split:left
+keybind = cmd+b>l=goto_split:right
+
+keybind = cmd+b>z=toggle_split_zoom
+
+keybind = cmd+b>e=equalize_splits

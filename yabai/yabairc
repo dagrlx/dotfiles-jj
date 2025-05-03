@@ -1,0 +1,107 @@
+#! /usr/bin/env sh
+
+# --- Yabai SA Configuration ---
+# Para que funcione --load-sa se debe de crear la regla en sudoers
+# echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa" | sudo tee /private/etc/sudoers.d/yabai
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+# --- Sketchybar Integration ---
+yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
+yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
+yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
+yabai -m config external_bar all:35:0
+yabai -m config menubar_opacity 1.0
+
+# --- signals ---
+#yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
+#yabai -m signal --add event=window_minimized active=yes action="if \$(yabai -m query --windows --window \$YABAI_WINDOW_ID | jq -r '.\"is-floating\"'); then yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null; fi"
+
+
+# --- Default Layout and Behavior ---
+yabai -m config layout bsp  # [bsp|stack|float]
+yabai -m config window_placement second_child
+yabai -m config window_origin_display default
+#yabai -m config window_topmost off  #opcion depreciada https://github.com/koekeishiya/yabai/issues/1887 y https://github.com/koekeishiya/yabai/issues/1898
+yabai -m config split_ratio 0.5
+yabai -m config split_type auto
+yabai -m config auto_balance off
+
+# --- Padding and Gaps ---
+yabai -m config top_padding 2
+yabai -m config bottom_padding 2
+yabai -m config left_padding 5
+yabai -m config right_padding 5
+yabai -m config window_gap 5
+
+# --- Mouse Settings ---
+yabai -m config focus_follows_mouse off
+yabai -m config mouse_follows_focus off
+yabai -m config mouse_modifier alt
+yabai -m config mouse_action1 move
+yabai -m config mouse_action2 resize
+yabai -m config mouse_drop_action swap
+
+# --- Window Appearance ---
+yabai -m config window_shadow float
+yabai -m config window_opacity off
+yabai -m config window_opacity_duration 0.25
+yabai -m config active_window_opacity 0.90
+yabai -m config normal_window_opacity 0.50
+yabai -m config window_animation_duration 0.25
+yabai -m config window_animation_easing ease_out_quint
+yabai -m config window_zoom_persist off
+yabai -m config insert_feedback_color 0xffd75f5f
+#yabai -m config active_window_border_color  0xBF775759
+#yabai -m config normal_window_border_color  0x7f353535  
+
+# --- General Rules ---
+#yabai -m rule --add app=".*" sub-layer=normal
+
+# --- App Specific Rules ---
+# Disable management for certain apps
+yabai -m rule --add app="^Monitor de Actividad$" manage=off
+yabai -m rule --add app="^Configuración del Sistema$" grid=6:6:1:1:2:4 manage=off
+yabai -m rule --add app="^Calculadora$" manage=off
+yabai -m rule --add app="^KeePassXC$" grid=6:6:1:1:2:2 manage=off
+yabai -m rule --add app="^Karabiner-Elements$" manage=off
+yabai -m rule --add app="^QuickTime Player$" manage=off
+yabai -m rule --add app="^zoom.us$" manage=off
+yabai -m rule --add app="^Microsoft Remote Desktop$" manage=off
+yabai -m rule --add app="^Vivaldi" title="^Ajustes de Vivaldi" manage=off
+yabai -m rule --add app="^TeamViewer" title="^Actualización de software" manage=off
+yabai -m rule --add app="^Bartender$" manage=off
+yabai -m rule --add app="^Numi$" manage=off
+yabai -m rule --add app="^NotasAdhesivas$" manage=off
+yabai -m rule --add app="VNC" grid=6:6:1:1:2:3 manage=off
+yabai -m rule --add app="^Finder$" grid=11:11:1:1:9:9 manage=off
+
+# Scratchpads
+yabai -m rule --add app="^MacUpdater$" scratchpad=macupdate grid=6:6:1:1:2:2
+yabai -m rule --add app="^Calendario$" scratchpad=calendario  grid=6:6:1:1:2:2
+
+# Specific Spaces
+yabai -m rule --add app="^Warp$" grid=11:11:1:1:9:9 space=1
+yabai -m rule --add app="^WezTerm$" grid=11:11:1:1:9:9 space=1
+yabai -m rule --add app="WhatsApp" space=2
+yabai -m rule --add app="^Telegram$" space=2
+yabai -m rule --add app="^Vivaldi" space=4
+yabai -m rule --add app="^Microsoft Teams$" space=5
+
+# Titles to Keep Unmanaged
+#yabai -m rule --add title="^.*Info$|^Copy$|^dgarciar$|^Trash$|^Open$|^Finder Settings$" manage=off opacity=1.0
+
+# --- Space Labels ---
+yabai -m space 1 --label principal
+yabai -m space 2 --label chats
+yabai -m space 3 --label stuff1
+yabai -m space 4 --label vivaldi
+yabai -m space 5 --label msteams
+yabai -m space 6 --label stuff2
+
+
+# Borders (New Config)
+#borders active_color=0xF0BE8900 inactive_color=0xff494d64 width=3.0 style=round hidpi=on&
+
+echo "yabai configuration loaded..."
+
