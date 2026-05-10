@@ -1,0 +1,8 @@
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR __fish_initialized:4300
+SETUVAR _fisher_catppuccin_2F_fish_files:\x7e/\x2econfig/fish/themes/catppuccin\x2dfrappe\x2etheme\x1e\x7e/\x2econfig/fish/themes/catppuccin\x2dmacchiato\x2etheme\x1e\x7e/\x2econfig/fish/themes/catppuccin\x2dmocha\x2etheme\x1e\x7e/\x2econfig/fish/themes/static
+SETUVAR _fisher_edc_2F_bass_files:\x7e/\x2econfig/fish/functions/__bass\x2epy\x1e\x7e/\x2econfig/fish/functions/bass\x2efish
+SETUVAR _fisher_plugins:edc/bass\x1ecatppuccin/fish
+SETUVAR _fisher_upgraded_to_4_4:\x1d
+SETUVAR fish_user_paths:/Users/dgarciar/\x2elmstudio/bin\x1e/run/current\x2dsystem/sw/bin\x1e/opt/homebrew/bin\x1e/opt/homebrew/sbin
