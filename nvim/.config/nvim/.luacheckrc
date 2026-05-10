@@ -1,0 +1,6 @@
+return {
+	globals = {
+		"vim",
+		"Snacks",
+	},
+}

@@ -1,0 +1,162 @@
+# https://starship.rs/config/
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+command_timeout = 2000       # Default 1000 
+palette = "catppuccin_mocha"
+
+# A minimal left prompt
+#format = "$directory$character "
+
+# move the rest of the prompt to the right
+#right_format = "$all "
+# right_format = """
+# $cmd_duration\
+# $username\
+# $hostname"""
+
+
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style) "
+home_symbol = "~"
+read_only = "🔒"
+read_only_style = "red"
+style = "bold fg:blue"
+truncate_to_repo = false
+truncation_length = 8
+truncation_symbol = "…/"
+
+[character]
+error_symbol = "[x](bold red)"
+success_symbol = "[›](bold green)"
+
+[jobs]
+symbol = " "
+style = "red"
+number_threshold = 1
+format = "[$symbol]($style)"
+
+[cmd_duration]
+#disabled = true
+format = "[$duration]($style) "
+min_time = 500
+style = "bold yellow"
+
+[hostname]
+detect_env_vars = ["HOSTNAME", "SSH_CONNECTION"]
+disabled = false
+format = "on [$ssh_symbol$hostname]($style) in "
+ssh_only = false
+ssh_symbol = " "
+style = "bold dimmed green"
+trim_at = "."
+
+[username]
+style_user = "peach bold"
+style_root = "red bold"
+format = "[$user]($style) "
+disabled = false
+show_always = true
+
+[sudo]
+style = "bold green"
+symbol = "👩‍💻 "
+disabled = false
+
+[os.symbols]
+Arch = " "
+Debian = " "
+Fedora = " "
+Linux = " "
+Macos = " "
+NixOS = " "
+Ubuntu = " "
+Unknown = " "
+Windows = "󰍲 "
+
+[shell]
+bash_indicator = 'bsh'
+nu_indicator = 'nu'
+zsh_indicator = 'zsh'
+style = 'cyan bold'
+disabled = false
+
+[aws]
+symbol = "🅰 "
+
+[docker_context]
+detect_extensions = ["Dockerfile"]
+detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
+format = "[$symbol]($style) $path"
+style = "fg:#06969A"
+symbol = " "
+
+[gcloud]
+format = "on [$symbol$active(($region))]($style) "
+symbol = "🅶 ️"
+
+[python]
+format = "(via [$symbol$pyenv_prefix($version)(($virtualenv))]($style)) "
+symbol = " "
+
+[rust]
+style = "orange"
+symbol = " "
+
+[palettes.catppuccin_macchiato]
+base = "#24273a"
+blue = "#8aadf4"
+crust = "#181926"
+flamingo = "#f0c6c6"
+green = "#a6da95"
+lavender = "#b7bdf8"
+mantle = "#1e2030"
+maroon = "#ee99a0"
+mauve = "#c6a0f6"
+orange = "#ffb86c"
+overlay0 = "#6e738d"
+overlay1 = "#8087a2"
+overlay2 = "#939ab7"
+peach = "#f5a97f"
+pink = "#f5bde6"
+red = "#ed8796"
+rosewater = "#f4dbd6"
+sapphire = "#7dc4e4"
+sky = "#91d7e3"
+subtext0 = "#a5adcb"
+subtext1 = "#b8c0e0"
+surface0 = "#363a4f"
+surface1 = "#494d64"
+surface2 = "#5b6078"
+teal = "#8bd5ca"
+text = "#cad3f5"
+yellow = "#eed49f"
+
+[palettes.catppuccin_mocha]
+base = "#1e1e2e"
+blue = "#89b4fa"
+crust = "#11111b"
+flamingo = "#f2cdcd"
+green = "#a6e3a1"
+lavender = "#b4befe"
+mantle = "#181825"
+maroon = "#eba0ac"
+mauve = "#cba6f7"
+overlay0 = "#6c7086"
+overlay1 = "#7f849c"
+overlay2 = "#9399b2"
+peach = "#fab387"
+pink = "#f5c2e7"
+red = "#f38ba8"
+rosewater = "#f5e0dc"
+sapphire = "#74c7ec"
+sky = "#89dceb"
+subtext0 = "#a6adc8"
+subtext1 = "#bac2de"
+surface0 = "#313244"
+surface1 = "#45475a"
+surface2 = "#585b70"
+teal = "#94e2d5"
+text = "#cdd6f4"
+yellow = "#f9e2af"

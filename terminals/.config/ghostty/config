@@ -1,0 +1,75 @@
+# theme = "light:Horizon Bright,dark:Broadcast"
+theme = Catppuccin Mocha
+
+font-family = "JetBrainsMono Nerd Font"
+
+font-size = 14
+
+# window-padding-x = 10
+# window-padding-y = 10
+# window-padding-balance = true
+
+# window-height = 36
+# window-width = 130
+
+window-decoration = true
+
+# cursor-style=block
+
+adjust-cell-height=35%
+
+mouse-scroll-multiplier = 2
+
+window-colorspace = "display-p3"
+
+# Some shaders can be found in this repo, they're usually uploaded to discord
+# https://github.com/hackrmomo/ghostty-shaders
+#custom-shader = shaders/inside-the-matrix.glsl
+#custom-shader = shaders/water.glsl
+# custom-shader = shaders/starfield.glsl
+# custom-shader = shaders/sparks-from-fire.glsl
+custom-shader = shaders/cursor_smear.glsl
+# custom-shader = shaders/cursor_smear_fade.glsl
+
+copy-on-select = clipboard
+
+window-save-state = always
+
+# Available values are: "native", "transparent", "tabs", and "hidden". (default is transparent)
+macos-titlebar-style = transparent
+
+background-opacity = 0.90
+
+background-blur = 90
+
+# Mouse
+mouse-hide-while-typing = true
+
+# https://ghostty.org/docs/config/reference#mouse-scroll-multiplier
+# mouse-scroll-multiplier = 
+
+# If `true`, the *Option* key will be treated as *Alt*. This makes terminal
+# sequences expecting *Alt* to work properly, but will break Unicode input
+# sequences on macOS if you use them via the *Alt* key. You may set this to
+# `false` to restore the macOS *Alt* key unicode sequences but this will break
+# terminal sequences expecting *Alt* to work.
+# 
+# The values `left` or `right` enable this for the left or right *Option*
+# key, respectively.
+# 
+# Note that if an *Option*-sequence doesn't produce a printable character, it
+# will be treated as *Alt* regardless of this setting. (i.e. `alt+ctrl+a`).
+macos-option-as-alt = right
+
+# Confirms that a surface should be closed before closing it.
+# 
+# This defaults to `true`. If set to `false`, surfaces will close without
+# any confirmation. This can also be set to `always`, which will always
+# confirm closing a surface, even if sh:window-padding-xell integration says a process isn't
+# running.
+confirm-close-surface = always
+
+shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo,path
+
+# command = "/opt/homebrew/bin/nu -l"
+

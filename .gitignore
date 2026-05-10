@@ -1,0 +1,106 @@
+# macOS
+.DS_Store
+
+# Secrets
+*.pem
+*.key
+*.p12
+*.pfx
+
+# SSH
+.ssh/
+
+# GPG
+.gnupg/
+
+# Cloud credentials
+.aws/
+.azure/
+
+# Kubernetes cache
+.kube/cache
+.kube/http-cache
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# direnv
+.direnv/
+
+# nix
+result
+result-*
+
+# Python
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# Logs
+*.log
+
+# Temp
+tmp/
+temp/
+
+# Nushell history
+history.sqlite3
+history.txt
+
+# SQLite
+*.sqlite3
+*.sqlite
+*.db
+
+# Yazi plugins/state
+yazi/package.toml
+yazi/plugins/
+
+# Zellij cache/state
+zellij/layouts/*.kdl.bak
+
+# Plugin downloads 
+plugins/
+**/plugins/
+plugged/
+lazy-lock.json.bak
+
+# Runtime state 
+state/
+session/
+sessions/
+
+# Caches 
+cache/
+.cache/
+
+# Swap 
+*.swp
+*.swo
+
+# Backup/test files 
+*.bak
+*.backup
+*.old
+*.orig
+*.tmp
+*.test
+*.nbk
+
+# Lua rocks
+.luarocks/
+
+# Neovim
+lazy-lock.json
+
+# Local env
+.local/
+
+# macOS metadata
+.AppleDouble
+.LSOverride
+
