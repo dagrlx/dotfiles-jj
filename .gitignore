@@ -1,5 +1,7 @@
 # macOS
 .DS_Store
+.AppleDouble
+.LSOverride
 
 # Secrets
 *.pem
@@ -100,7 +102,10 @@ lazy-lock.json
 # Local env
 .local/
 
-# macOS metadata
-.AppleDouble
-.LSOverride
+# nix 
+result
+result-*
 
+# Python
+__pycache__/
+*.pyc
