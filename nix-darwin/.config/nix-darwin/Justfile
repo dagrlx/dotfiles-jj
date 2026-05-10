@@ -1,0 +1,51 @@
+hostname := `hostname -s`
+# hostname := "enocm1"
+
+default:
+  @just --list
+
+## Aplica la configuración Nix declarativa al sistema macOS con nh
+darwin:
+  nh darwin switch -H {{hostname}}
+
+## Igual que `darwin`, pero con trazas y salida detallada para depuración
+darwin-debug:
+  nh darwin switch -H {{hostname}} --show-trace --verbose
+
+## Actualiza todos los inputs del flake Nix (nixpkgs, overlays, etc.)
+up:
+  nix flake update
+
+## Actualiza un input específico del flake
+## Uso: just upp nixpkgs
+upp input:
+  nix flake update {{input}}
+
+## Muestra el historial de generaciones del perfil del sistema
+history:
+  nh os history
+
+## Elimina generaciones del sistema más antiguas de 7 días
+clean:
+  nh clean --keep-since 7d --keep 3
+
+## Ejecuta recolección de basura en el almacén Nix (usuario y sistema)
+gc:
+  nh clean --keep-since 7d --keep 3
+
+## Formatea todos los archivos .nix del nh darwin switch -H {{hostname}}proyecto usando el formateador nativo
+fmt:
+  nix fmt
+
+## Muestra los enlaces de raíces de GC automáticos en el almacén Nix
+gcroot:
+  ls -al /nix/var/nix/gcroots/auto/
+
+## Valida outputs, módulos y estructura
+check:
+  nix flake check
+
+## Búsqueda rápida de paquetes sin tener que abrir nixpkgs manualmente.
+search query:
+  nh search {{query}}
+

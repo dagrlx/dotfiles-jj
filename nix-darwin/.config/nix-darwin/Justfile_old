@@ -1,0 +1,51 @@
+# hostname := `hostname -s`
+hostname := "enocm1"
+
+default:
+  @just --list
+
+## Aplica la configuración Nix declarativa al sistema macOS
+darwin:
+  nix build .#darwinConfigurations.{{hostname}}.system
+  sudo ./result/sw/bin/darwin-rebuild switch --flake .#{{hostname}}
+
+## Igual que `darwin`, pero con trazas y salida detallada para depuración
+darwin-debug:
+  nix build .#darwinConfigurations.{{hostname}}.system \
+    --show-trace --verbose
+  sudo ./result/sw/bin/darwin-rebuild switch --flake .#{{hostname}} \
+    --show-trace --verbose
+
+## Actualiza todos los inputs del flake Nix (nixpkgs, overlays, etc.)
+up:
+  nix flake update
+
+## Actualiza un input específico del flake
+## Uso: just upp nixpkgs
+upp input:
+  nix flake update {{input}}
+
+## Muestra el historial de generaciones del perfil del sistema
+history:
+  nix profile history --profile /nix/var/nix/profiles/system
+
+## Elimina generaciones del sistema más antiguas de 7 días
+clean:
+  sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d
+
+## Ejecuta recolección de basura en el almacén Nix (usuario y sistema)
+gc:
+  sudo nix-collect-garbage --delete-older-than 7d
+  nix-collect-garbage --delete-older-than 7d
+
+## Formatea todos los archivos .nix del proyecto usando el formateador nativo
+fmt:
+  nix fmt
+
+## Muestra los enlaces de raíces de GC automáticos en el almacén Nix
+gcroot:
+  ls -al /nix/var/nix/gcroots/auto/
+
+## Valida outputs, modulos y estructura
+check:
+  nix flake check

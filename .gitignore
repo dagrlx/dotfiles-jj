@@ -105,7 +105,11 @@ lazy-lock.json
 # nix 
 result
 result-*
+datos.nix
+flake.lock
 
 # Python
 __pycache__/
 *.pyc
+
+

@@ -1,0 +1,6 @@
+datos.nix
+flake.lock
+result
+result/
+.DS_Store
+stuff/
