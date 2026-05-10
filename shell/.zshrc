@@ -72,6 +72,9 @@ export CARAPACE_BRIDGES='zsh,fish,bash'
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 source <(carapace _carapace)
 
+# --- Autocompletacion dinamica para jujutsu
+source <(COMPLETE=zsh jj)
+
 if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
   source "$GHOSTTY_RESOURCES_DIR/shell-integration/zsh/ghostty-integration"
 fi

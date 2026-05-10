@@ -68,6 +68,9 @@ if status is-interactive
     direnv hook fish | source
     carapace _carapace | source
 
+    # Autocompletado de jj (dinámico)
+    COMPLETE=fish jj | source
+
     # Ghostty shell integration (ajustado a fish)
     if set -q GHOSTTY_RESOURCES_DIR
         set -l ghostty_fish "$GHOSTTY_RESOURCES_DIR/shell-integration/fish/ghostty-integration.fish"
