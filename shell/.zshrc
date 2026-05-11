@@ -66,7 +66,7 @@ zstyle ':completion:*' menu yes select search
 zstyle ':completion:*' complete-options true
 
 # ========== Funciones y extras ==========
-[ -f "$XDG_CONFIG_HOME/nix-darwin/home/zsh_func" ] && source "$XDG_CONFIG_HOME/nix-darwin/home/zsh_func"
+[ -f "$HOME/.zsh_func" ] && source "$HOME/.zsh_func"
 # ========== Carapace ==========
 export CARAPACE_BRIDGES='zsh,fish,bash'
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
@@ -81,7 +81,7 @@ fi
 
 ## Variable para nh
 #export nh_darwin_flake=/Users/dgarciar/.config/nix-darwin
-export nh_darwin_flake=$HOME/.dotfiles-jj/nix-darwin/.config/nix-darwin
+export NH_DARWIN_FLAKE="$HOME/.dotfiles-jj/nix-darwin/.config/nix-darwin"
 
 
 # ========== Aliases ==========
