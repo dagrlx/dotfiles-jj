@@ -80,7 +80,9 @@ if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
 fi
 
 ## Variable para nh (Hay que revisar porque no se carga en el sistema)
-export NH_DARWIN_FLAKE=/Users/dgarciar/.config/nix-darwin
+#export nh_darwin_flake=/Users/dgarciar/.config/nix-darwin
+export nh_darwin_flake=/Users/dgarciar/.dotfiles-jj/nix-darwin/.config/nix-darwin
+
 
 # ========== Aliases ==========
 alias rustscan="docker run -it --rm --name rustscan --platform linux/amd64 rustscan/rustscan"
