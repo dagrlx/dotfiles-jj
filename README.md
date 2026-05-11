@@ -1,4 +1,3 @@
-````markdown id="jlwmki"
 # Dotfiles
 
 Managed with:
@@ -12,12 +11,13 @@ Managed with:
 - terminals
 - cli
 - editors
+- archive
+- nvim
+- nix-darwin
 
 ## Setup
 
 ```bash
 stow shell terminals cli editors
-````
+```
 
-```
-```
