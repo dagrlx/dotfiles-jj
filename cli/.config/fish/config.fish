@@ -7,7 +7,7 @@ set -gx NH_DARWIN_FLAKE "$HOME/.config/nix-darwin"
 set -gx CARAPACE_BRIDGES 'zsh,fish,bash'
 set -gx _ZO_ECHO 1
 set -gx _ZO_RESOLVE_SYMLINKS 1
-set -gx NH_DARWIN_FLAKE $HOME/.dotfiles-jj/nix-darwin/.config/nix-darwin
+set -gx NH_DARWIN_FLAKE "$HOME/.dotfiles-jj/nix-darwin/.config/nix-darwin"
 
 # PATH moderno (fish_add_path evita duplicados automáticamente)
 fish_add_path /opt/homebrew/bin /opt/homebrew/sbin
