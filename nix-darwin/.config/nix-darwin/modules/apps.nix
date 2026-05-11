@@ -174,6 +174,7 @@
 
       #CONTROL VERSIONES - DOTFILES
       #"chezmoi"
+      "stow"
       "jj" # jujutsu
       #"yadm"
       "age" # Is a simple, modern and secure file encryption tool, format, and Go library.
