@@ -81,7 +81,7 @@ fi
 
 ## Variable para nh
 #export nh_darwin_flake=/Users/dgarciar/.config/nix-darwin
-export nh_darwin_flake=/Users/dgarciar/.dotfiles-jj/nix-darwin/.config/nix-darwin
+export nh_darwin_flake=$HOME/.dotfiles-jj/nix-darwin/.config/nix-darwin
 
 
 # ========== Aliases ==========
