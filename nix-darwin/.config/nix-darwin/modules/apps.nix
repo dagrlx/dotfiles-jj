@@ -83,6 +83,7 @@
       "mhaeuser/mhaeuser" # battery-toolkit
       "sinelaw/fresh"  # Fresh editor
       "BarutSRB/tap"
+      "manaflow-ai/cmux"
     ];
 
     # `brew install`
@@ -284,6 +285,7 @@
       #"wave" # terminal con AI alternativa a warp y es software libre
       #"ghostty" # Ghostty is a terminal emulator that differentiates itself by being fast, feature-rich, and native.
       "kitty"
+      "cmux"
       #"rio"
 
       "keepassxc"
