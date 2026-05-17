@@ -350,8 +350,8 @@
 
       # OBS (Open Broadcaster Software)
       "obs"
-      "obs-advanced-scene-switcher"
-      "obs-backgroundremoval"
+      # "obs-advanced-scene-switcher"  # Obsoleto
+      # "obs-backgroundremoval"  # Obsoleto
 
       "audacity"
     ];
