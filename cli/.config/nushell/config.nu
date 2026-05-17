@@ -92,7 +92,7 @@ source ~/.config/nushell/integrations/carapace/carapace-init.nu
 # # Completadores para comandos externos
 source ~/.config/nushell/completions/zoxide-cmp.nu
 # Completadores para funciones internas (cd, cdi)
-source ~/.config/nushell/completions/zoxide-complete2.nu
+source ~/.config/nushell/completions/zoxide-complete.nu
 
 # ────────────────────────────────────────────────
 # ⌨️ KEYBINDINGS PERSONALIZADOS
