@@ -2,8 +2,10 @@
 
 Managed with:
 
-- jj
+- jj (Jujutsu git)
 - GNU Stow
+- Nix Home Manager
+- Nix-Darwim
 
 ## Structure
 
