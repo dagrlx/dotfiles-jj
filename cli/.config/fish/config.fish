@@ -57,8 +57,8 @@ alias urlencode="python3 -c 'import sys, urllib.parse as ul; print(ul.quote_plus
 alias vn="NVIM_APPNAME=nvim-dev bob run nightly"
 alias yu="ya pkg upgrade"
 alias baofirma='bao write -field=signed_key ssh/sign/admin-ssh public_key=@$HOME/.ssh/dagrlx_ed25519.pub > ~/.ssh/dagrlx_ed25519-cert.pub && echo "✅ Certificado renovado"'
-alias fs='fish'
-alias ns='nu'
+alias zs='zsh -l -i'
+alias ns='nu -l'
 
 # ================= INTERACTIVE SESSIONS ONLY =================
 if status is-interactive
