@@ -75,14 +75,22 @@ source <(carapace _carapace)
 # --- Autocompletacion dinamica para jujutsu
 source <(COMPLETE=zsh jj)
 
-if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
-  source "$GHOSTTY_RESOURCES_DIR/shell-integration/zsh/ghostty-integration"
-fi
+case "$TERM_PROGRAM" in
+    Ghostty)
+        if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
+            source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
+        fi
+        ;;
+    cmux)
+        if [ -n "${CMUX_SHELL_INTEGRATION_DIR}" ]; then
+            source "${CMUX_SHELL_INTEGRATION_DIR}/cmux-zsh-integration.zsh"
+        fi
+        ;;
+esac
 
 ## Variable para nh
 #export nh_darwin_flake=/Users/dgarciar/.config/nix-darwin
 export NH_DARWIN_FLAKE="$HOME/.dotfiles-jj/nix-darwin/.config/nix-darwin"
-
 
 # ========== Aliases ==========
 alias rustscan="docker run -it --rm --name rustscan --platform linux/amd64 rustscan/rustscan"
@@ -107,24 +115,9 @@ alias urlencode="python3 -c 'import sys, urllib.parse as ul; print(ul.quote_plus
 alias v="nvim"
 alias vn="NVIM_APPNAME=nvim-dev bob run nightly"
 alias yu="ya pkg upgrade"
+alias fs='fish -l'
+alias ns='nu -l'
 alias baofirma='bao write -field=signed_key ssh/sign/admin-ssh public_key=@$HOME/.ssh/dagrlx_ed25519.pub > ~/.ssh/dagrlx_ed25519-cert.pub && echo "✅ Certificado renovado"'
-
-# ... (todo tu PATH, history, plugins, etc. se queda igual)
-
-# ========== Alias para shells ==========
-# Fish
-if command -v fish > /dev/null 2>&1; then
-    alias fs='fish'
-    alias fish-shell='fish'
-    echo "✅ Fish disponible. Usa 'fs' o 'fish-shell' para iniciarlo."
-fi
-
-# Nushell
-if command -v nu > /dev/null 2>&1; then
-    alias ns='nu'
-    alias nushell='nu'
-    echo "✅ Nushell disponible. Usa 'ns' o 'nushell' para iniciarlo."
-fi
 
 eval "$(zoxide init zsh --cmd cd)"
 
@@ -135,38 +128,6 @@ eval "$(atuin init zsh --disable-up-arrow)"
 eval "$(starship init zsh)"
 
 eval "$(direnv hook zsh)"
-
-# eval $(thefuck --alias)
-
-# ========== Lanzar Nushell en sesiones interactivas ==========
-# if [[ $- == *i* ]] && command -v nu >/dev/null; then
-#   exec nu
-# fi
-#
-# if [[ $- == *i* ]] && [[ -z "$NO_NU" ]] && command -v nu >/dev/null; then
-#   exec nu
-# fi
-
-# if command -v nu > /dev/null 2>&1 && [ -z "$NU_ACTIVE" ]; then
-#     export NU_ACTIVE=1
-#     exec nu
-# fi
-
-# ========== Mensaje ==========
-# Solo se muestgra si es sesión interactiva
-# if [[ $- == *i* ]]; then
-#   echo -e "\e[1;35mZsh cargado ☕\e[0m"
-# fi
-
-# if [[ -t 1 && $- == *i* ]]; then
-#   echo -e "\e[1;35mZsh cargado ☕\e[0m"
-# fi
-#
-
-# # Si es una terminal interactiva y fish está instalado, usa fish
-# if command -v fish > /dev/null 2>&1; then
-#     exec fish
-# fi
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/dgarciar/.lmstudio/bin"
