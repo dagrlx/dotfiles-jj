@@ -38,9 +38,9 @@ window-save-state = always
 # Available values are: "native", "transparent", "tabs", and "hidden". (default is transparent)
 macos-titlebar-style = transparent
 
-background-opacity = 0.90
+background-opacity = 0.85
 
-background-blur = 90
+background-blur = 10
 
 # Mouse
 mouse-hide-while-typing = true
@@ -71,5 +71,7 @@ confirm-close-surface = always
 
 shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo,path
 
-# command = "/opt/homebrew/bin/nu -l"
+# command = "zsh -l -i -c 'exec nu'"
+# command = "zsh -l -i -c 'exec fish'"
+command = "/Users/dgarciar/.config/ghostty/select-shell-zsh.sh"
 
