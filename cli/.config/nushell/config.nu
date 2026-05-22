@@ -131,6 +131,8 @@ alias sgc = sudo nix-collect-garbage -d
 alias dlg = darwin-rebuild --list-generations
 alias yu = ya pkg upgrade
 alias zsh-nuoff = do { NO_NU=1 zsh }
+alias zs = zsh -l -i
+alias fs = fish -l
 # alias zsh-nuoff = with-env { NO_NU: "1" } { run-external "zsh" "-i" }
 # Fuzzy finder de ventanas (Aerospace)
 alias ff = do {
