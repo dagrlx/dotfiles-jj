@@ -29,7 +29,7 @@ in {
     # You can update Home Manager without changing this value. See
     # the Home Manager release notes for a list of state version
     # changes in each release.
-    stateVersion = "25.11";
+    stateVersion = "26.05";
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
