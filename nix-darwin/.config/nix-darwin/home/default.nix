@@ -1,6 +1,7 @@
 {
   username,
   config,
+  lib,
   ...
 }: let
   homeDirectory = "/Users/${username}";
@@ -47,71 +48,6 @@ in {
   #     source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/skhd";
   #     recursive = true;
   #   };
-
-    #   "aerospace" = {
-    #     source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/aerospace";
-    #     recursive = true;
-    #   };
-    #
-    #   "borders" = {
-    #     source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/borders";
-    #     recursive = true;
-    #   };
-    #
-    #   "nushell" = {
-    #     source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/nushell";
-    #     recursive = true;
-    #   };
-    #
-    #   "nix-darwin" = {
-    #     source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/nix-darwin";
-    #     recursive = true;
-    #   };
-    #
-    #   "nvim" = {
-    #     source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/nvim";
-    #     recursive = true;
-    #   };
-    #
-    #   "starship" = {
-    #     source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/starship";
-    #     recursive = true;
-    #   };
-    #
-    #   "tmux" = {
-    #     source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/tmux";
-    #     recursive = true;
-    #   };
-    #
-    #   "yazi" = {
-    #     source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/yazi";
-    #     recursive = true;
-    #   };
-    #
-    #   "wezterm" = {
-    #     source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/wezterm";
-    #     recursive = true;
-    #   };
-    #
-    #   "sketchybar" = {
-    #     source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/sketchybar";
-    #     recursive = true;
-    #   };
-    #
-    #   "ghostty" = {
-    #     source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/ghostty";
-    #     recursive = true;
-    #   };
-    #
-    #   "zellij" = {
-    #     source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/zellij";
-    #     recursive = true;
-    #   };
-    #
-    #   "rio" = {
-    #     source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/rio";
-    #     recursive = true;
-    #   };
   # };
   #
   # home.sessionVariables = {
