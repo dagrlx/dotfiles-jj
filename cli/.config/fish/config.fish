@@ -14,6 +14,7 @@ fish_add_path /opt/homebrew/bin /opt/homebrew/sbin
 fish_add_path /run/current-system/sw/bin
 fish_add_path "$HOME/.nix-profile/bin"
 fish_add_path "$HOME/.lmstudio/bin"
+fish_add_path "$HOME/.bun/bin"
 
 # Homebrew (detecta shell y exporta set -gx automáticamente)
 if command -q brew
