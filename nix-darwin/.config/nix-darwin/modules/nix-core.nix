@@ -14,8 +14,17 @@
   # defautl is true
   #nix.enable = true;
 
+# nixpkgs.overlays = [ (final: prev: {
+#     inherit (prev.lixPackageSets.stable)
+#       nixpkgs-review
+#       nix-eval-jobs
+#       nix-fast-build
+#       colmena;
+#   }) ];
+
   # nix.package = pkgs.nixVersions.latest;
-  nix.package = pkgs.lixPackageSets.stable.lix;
+  # nix.package = pkgs.lixPackageSets.stable.lix;
+  nix.package = pkgs.lixPackageSets.latest.lix;
   #nix.package = pkgs.nixVersions.nix_2_21;
 
   programs.nix-index.enable = true;
