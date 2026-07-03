@@ -9,8 +9,11 @@ darwin:
   nh darwin switch -H {{hostname}}
 
 ## Igual que `darwin`, pero con trazas y salida detallada para depuración
-darwin-debug:
+nh-darwin-debug:
   nh darwin switch -H {{hostname}} --show-trace --verbose
+
+darwin-debug:
+  sudo darwin-rebuild switch --verbose --flake ~/.config/nix-darwin/#{{hostname}} 
 
 ## Actualiza todos los inputs del flake Nix (nixpkgs, overlays, etc.)
 up:
