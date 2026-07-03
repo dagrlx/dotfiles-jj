@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, lib, ... }: {
   ##########################################################################
   #
   #  Install all apps and packages here.
@@ -24,17 +24,27 @@
     just # use Justfile to simplify nix-darwin's commands
   ];
 
-  environment.variables.EDITOR = "nvim";
+  environment.variables = {
+    EDITOR = "nvim";
+  };
+
+  environment.systemPath = [
+    "/opt/homebrew/bin"
+    "/opt/homebrew/sbin"
+  ];
 
   # TODO To make this work, homebrew need to be installed manually, see https://brew.sh
   #
   # The apps installed by homebrew are not managed by nix, and not reproducible!
-  # But on macOS, homebrew has a much larger selection of apps than nixpkgs, especially for GUI apps!
   homebrew = {
     prefix = "/opt/homebrew";
     enable = true;
-    #macOS pone en cuarentena las aplicaciones descargadas de internet para mayor seguridad.
-    caskArgs.no_quarantine = true;
+    global = {
+    autoUpdate = false;
+    brewfile = true;
+    };
+    #macOS pone en cuarentena las aplicaciones descargadas de internet para mayor seguridade
+    # caskArgs.no_quarantine = true;
 
     onActivation = {
       # Controla si Homebrew se auto-actualiza a sí mismo y a todas las fórmulas durante la activación del sistema
@@ -42,8 +52,9 @@
       autoUpdate = true;
       # Controla si se deben actualizar las fórmulas de Homebrew durante la activación del sistema Nix-darwin.
       upgrade = true;
+      # Type: one of “none”, “check”, “uninstall”, “zap”
       # 'zap': uninstalls all formulae(and related files) not listed here
-      cleanup = "zap";
+      cleanup = "uninstall";
     };
 
     # Applications to install from Mac App Store using mas.
@@ -68,30 +79,99 @@
     #};
 
     taps = [
-      "jzelinskie/duckdns"
-      "koekeishiya/formulae"
-      "FelixKratz/formulae"
-      "gromgit/fuse"
-      "nikitabobko/tap"
-      "BarutSRB/tap"   #fork of aerospace
-      "netbirdio/tap"
-      "olets/tap"
-      "lihaoyun6/tap"
-      "TheZoraiz/ascii-image-converter"
-      "alienator88/cask"
-      "pkgxdev/made"
-      "mhaeuser/mhaeuser" # battery-toolkit
-      "sinelaw/fresh"  # Fresh editor
-      "BarutSRB/tap"
-      "manaflow-ai/cmux"
+      {
+        name = "FelixKratz/formulae";
+        trusted = true;
+      }
+      {
+        name = "jzelinskie/duckdns";
+        trusted = true;
+      }
+      {
+        name = "gromgit/fuse";
+        trusted = true;
+      }
+      {
+        name = "nikitabobko/tap";
+        trusted = true;
+      }
+      {
+        name = "BarutSRB/tap";
+        trusted = true;
+      }
+      {
+        name = "guria/tap";
+        trusted = true;
+      }
+      {
+        name = "acsandmann/tap";
+        trusted = true;
+      }
+      {
+        name = "netbirdio/tap";
+        trusted = true;
+      }
+      {
+        name = "olets/tap";
+        trusted = true;
+      }
+      {
+        name = "lihaoyun6/tap";
+        trusted = true;
+      }
+      {
+        name = "TheZoraiz/ascii-image-converter";
+        trusted = true;
+      }
+      {
+        name = "alienator88/cask";
+        trusted = true;
+      }
+      {
+        name = "pkgxdev/made";
+        trusted = true;
+      }
+      {
+        name = "mhaeuser/mhaeuser";
+        trusted = true;
+      } # battery-toolkit
+      {
+        name = "sinelaw/fresh";
+        trusted = true;
+      }
+      {
+        name = "manaflow-ai/cmux";
+        trusted = true;
+      }
+      {
+        name = "hewigovens/tap";
+        trusted = true;
+      } # jayjay (jj)
+      {
+        name = "tw93/tap";
+        trusted = true;
+      }
+      {
+        name = "anomalyco/tap";
+        trusted = true;
+      } # opencode
+      {
+        name = "iliyami/macsai";
+        trusted = true;
+      }
+       {
+        name = "sh4dow-clone/tap";
+        trusted = true;
+      } 
+
+
     ];
 
     # `brew install`
     # TODO Feel free to add your favorite apps here.
     brews = [
-      # UTILIDADES
       "wget" # download tool
-      "curl" # no not install curl via nixpkgs, it's not working well on macOS!
+      "curl" 
       "aria2" # download tool
       "httpie" # http client
       "duckdns"
@@ -103,24 +183,25 @@
       "thefuck" # magnificent app that corrects your previous console command
       "tabiew" # Lector de archvio csv con consultas sql"
       "duckdb"
-      "tw93/tap/mole"
+      "mole"
       "awscli"
       "minio-mc"
-      "stu"   # TUI explorer for S3
+      "stu" # TUI explorer for S3
       "carapace"
       "direnv"
       "perl"
-
+      "rclone"
+      "sniffnet"
       "btop" # monitoreo de recursos
       "sshs" # List and connect to hosts using ~/.ssh/config.
-      "the_silver_searcher" # A code searching tool similar to ack, with a focus on speed.
+      
 
       # CONTAINERS Y VM
       "podman"
       "podlet"
       "lima"
-
-      "zellij"
+      # "container" # Native container of Macos 
+      # "container-compose"
 
       # PLUGINS ZSH
       "zsh-abbr"
@@ -133,7 +214,7 @@
       "nano"
       "nanorc"
       "neovim"
-      "bob" #  Neovim version manager
+      "bob" # Neovim version manager
       "fresh-editor"
 
       # FILEMANAGER
@@ -151,7 +232,6 @@
       "resvg"
       "imagemagick-full"
 
-
       # COMPLEMENTOS PARA NEOVIM
       "lua"
       "luacheck"
@@ -163,11 +243,11 @@
       "go"
       "rust"
 
-      "sketchybar"
-      "switchaudio-osx"
-      "nowplaying-cli"
-      "borders"
-      "acsandmann/tap/rift"
+      # "sketchybar"
+      # "switchaudio-osx"
+      # "nowplaying-cli"
+      # "borders"
+      # "rift"
 
       "nushell"
       "fish"
@@ -185,15 +265,17 @@
       "talosctl"
       #"ntfs-3g-mac"
 
-      # AGENTES, CHAT PARA LLM
-      "aichat" # all-in-one LLM CLI tool featuring Shell Assistant, CMD & REPL Mode, RAG, AI Tools & Agents, and More.
-      "gemini-cli"
-      "sst/tap/opencode"
+      # AGENTES, CHAT PARA LLM, TOOLS
+      # "aichat" # all-in-one LLM CLI tool featuring Shell Assistant, CMD & REPL Mode, RAG, AI Tools & Agents, and More.
+      "opencode"
+      "herdr" # Multiplexor para agentes y sustitu de tmux
 
       "pam-reattach" # PAM module for reattaching to the user's GUI session (touchID)
 
-      "pkgxdev/made/pkgx" # Alternativa a hombrew
-      "pkgxdev/made/pkgm" # package manager of pkgx
+      "pkgx" # Alternativa a hombrew
+      "pkgm" # package manager of pkgx
+      "deno" # Depedencia de pkgm
+      "bun" # package manager, js, tyscript
 
       "kanata" # Excelente mapeador de teclado
 
@@ -209,12 +291,6 @@
     casks = [
       "firefox"
       #"zen" # zen-browser
-      #"google-chrome"
-      #"brave-browser"
-      #{
-      #  name = "microsoft-edge";
-      #  greedy = true;
-      #}
       # always upgrade auto-updated or unversioned cask to latest version even if already installed
       #{
       #  name = "opera";
@@ -231,12 +307,14 @@
       #"visual-studio-code"
       "zed"
       "devpod"
+      # A native macOS GUI for Jujutsu
+      "jayjay"  # hewigovens/tap/jayjay
 
-      "microsoft-teams"
+      # "microsoft-teams"
       "microsoft-auto-update"
       "windows-app" # new app for RDP
       "syncthing-app" # file sync
-      "raycast" # (HotKey: alt/option + space)search, caculate and run scripts(with many plugins)
+      # "raycast" # (HotKey: alt/option + space)search, caculate and run scripts(with many plugins)
       #"iglance" # beautiful system monitor
       "macfuse"
       "mounty"
@@ -245,8 +323,8 @@
 
       #VPN
       # "zerotier-one"
-      # "tailscale"
-      # "netbird-ui"
+      "tailscale-app"
+      "netbird-ui"
 
       # Utilities
       "localsend"
@@ -262,34 +340,38 @@
       #"tyke" # App para tomar notas rapidas temporal
       #"applite" # App grafica homebrew - https://www.thriftmac.com
       "google-drive"
-      "battery-toolkit"
+      # "battery-toolkit"
       "imageoptim" # optimizer image
       "betterdisplay"
+      "uninstallpkg"
+      # "ali-expandings/mactune/mactune"
+      "hewigovens/tap/app-detective"
+      "dpimanager"
 
       "brilliant"
 
       #"colemak-dh" # latout colemak mod DH
 
       "aerospace" # Tiling manager basado en i3wm
-      "omniwm"  # Tiling manager (niri, Hyprland Dwindle)
-      # "hyprspace" # Fork de aerospace
+      "omniwm" # Tiling manager (niri, Hyprland Dwindle)
+      # "guria/tap/nehir"  # Fork of omniwm (only niri)
+      "guria/tap/nehir@rc"
 
       "MonitorControl"
       "pearcleaner" # mac app cleaner
       "sentinel-app" # A GUI for controlling Gatekeeper
+      "mac-sai"
+      "rclone-ui"
       #"ubersicht"
 
       #Terminales
-      # "wezterm"
-      #"warp" # terminal con AI y wrapper
       #"wave" # terminal con AI alternativa a warp y es software libre
-      #"ghostty" # Ghostty is a terminal emulator that differentiates itself by being fast, feature-rich, and native.
       "kitty"
       "cmux"
       #"rio"
 
       "keepassxc"
-      "podman-desktop"
+      # "podman-desktop"
       #"slack"
       "teamviewer"
       "anydesk"
@@ -300,13 +382,12 @@
       #"utm"
       "numi" # calculadora
       #"stats"
-      #"neovide"
-      #"amazon-chime"
       #"qbittorrent"
       #"send-anywhere"
       "postman"
+      "bruno" # Alternativa a postman
 
-      "telegram"
+      # "telegram"
       #"whatsapp"
       "zoom"
 
@@ -321,17 +402,18 @@
       "displaylink"
       "obsidian"
       #"jordanbaird-ice" # Menu bar - Equivalente a bartender
+      "thaw" # fork of ice 
       #"kap"
       #"cap"
       #"spaceman"
       #"raspberry-pi-imager"
-      "quickrecorder" # record screen
+      # "quickrecorder" # record screen
       "shottr"
       "shortcat" # Permite navegar iterfaz GUI con atajos
 
       #Fonts for sketchybar, wezterm
 
-      "font-sketchybar-app-font" # apps icons
+      # "font-sketchybar-app-font" # apps icons
       "font-hack-nerd-font" # Font for sketchybar
       "font-sf-pro" # Simbolos
       "sf-symbols" # iconos
@@ -342,6 +424,7 @@
       ##### AI tool
       "lm-studio" # App for testing llms models
       "gpt4all"
+      "ollama-app"
 
       "lulu" # firewwall for macOS
       "freelens" # for managing Kubernetes clusters
