@@ -1,4 +1,5 @@
 typeset -U path PATH  # Elimina duplicados en PATH
+
 # ========== PATH y entorno ==========
 # Evita errores si Homebrew no está instalado
 if command -v brew >/dev/null; then
@@ -10,6 +11,16 @@ export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/run/current-system/sw/bin:$HO
 ##export PATH=/run/current-system/sw/bin:$HOME/.nix-profile/bin:$PATH
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+
+# Bun
+if [ -d "$HOME/.bun/bin" ]; then
+  path=("$HOME/.bun/bin" $path)
+fi
+
+# LM Studio
+if [ -d "$HOME/.lmstudio/bin" ]; then
+  path=("$HOME/.lmstudio/bin" $path)
 fi
 
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -121,7 +132,7 @@ alias baofirma='bao write -field=signed_key ssh/sign/admin-ssh public_key=@$HOME
 
 eval "$(zoxide init zsh --cmd cd)"
 
-# ========== Activación de zsh-abbr ==========
+# ========== Activación de autin ==========
 eval "$(atuin init zsh --disable-up-arrow)"
 
 # ========== Starship prompt ==========
@@ -129,7 +140,10 @@ eval "$(starship init zsh)"
 
 eval "$(direnv hook zsh)"
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/dgarciar/.lmstudio/bin"
-# End of LM Studio CLI section
-
+# >>> llmtrim >>>
+export HTTPS_PROXY="http://127.0.0.1:43117"
+export HTTP_PROXY="http://127.0.0.1:43117"
+export NO_PROXY="localhost,127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,169.254.0.0/16,fd00::/8,*.local"
+export no_proxy="localhost,127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,169.254.0.0/16,fd00::/8,*.local"
+export NODE_EXTRA_CA_CERTS="/Users/dgarciar/.llmtrim/ca.pem"
+# <<< llmtrim <<<
