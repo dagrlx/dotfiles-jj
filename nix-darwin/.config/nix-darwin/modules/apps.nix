@@ -200,8 +200,8 @@
       "podman"
       "podlet"
       "lima"
-      # "container" # Native container of Macos 
-      # "container-compose"
+      "container" # Native container of Macos 
+      "container-compose"
 
       # PLUGINS ZSH
       "zsh-abbr"
@@ -376,6 +376,7 @@
       "teamviewer"
       "anydesk"
       "orbstack" # Docker y MV
+      "Augani/dory/dory"  # Conainter macos, Docker y VM
       "appcleaner"
       #"diffusionbee" # Create Amazing Images Using AI
       #"authy"
