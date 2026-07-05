@@ -1,22 +1,31 @@
-# Entorno de Automatización de Dotfiles (Sysadmin Setup)
+# Dotfiles (macOS M1)
 
-Eres un agente autónomo operando en una MacBook Air M1. Tu objetivo es ayudar a mantener, refactorizar y automatizar mis archivos de configuración (dotfiles).
+Dotfiles gestionados con **jj** + **GNU Stow** + **nix-darwin**.
 
-## Herramientas del Sistema y Flujo de Trabajo
+## Stow
 
-1. **Gestión de Dotfiles (`stow`)**:
-   - Usamos GNU Stow para crear enlaces simbólicos de las configuraciones hacia el `$HOME`.
-   - Si creas o modificas una configuración (ej. dentro de `nvim/` o `nushell/`), recuerda que para aplicarla se debe ejecutar `stow <nombre_del_paquete>` desde la raíz del repositorio de dotfiles.
+- Paquetes activos: `shell terminals cli editors`
+- Desde la raíz del repo: `stow <package>` para crear/enlaces, `stow -D <package>` para remover
+- Si modificas algo dentro de un paquete (ej. `shell/.zshrc`), **debes** re-stowearlo (`stow -R shell`) para que los cambios se reflejen en `$HOME`
 
-2. **Control de Versiones (`jj`)**:
-   - NO usamos comandos de Git directamente (`git commit`, `git add`). Usamos **Jujutsu (`jj`)**.
-   - Tras realizar un cambio exitoso en los archivos, describe el cambio pero deja que el usuario decida cuándo hacer `jj describe` o `jj squash`. El flujo de trabajo es puramente local hasta que se indique lo contrario.
+## jj (control de versiones)
 
-3. **Entorno de Shell (`Zsh`)**:
-   - Mi shell principal es zsh.  
+- NO uses `git` — usa `jj` siempre
+- No hagas `jj describe` ni `jj squash` sin preguntar
+- **No intentes sincronizar con remotos** (`jj git push`, `jj git remote`, etc.) — estrictamente local
 
-## Reglas de Comportamiento del Agente
-- Sé conciso y directo al grano (mantén tus respuestas cortas).
-- No inventes comandos de `jj` o `stow`. Si no estás seguro de un flag, usa `--help` mediante la herramienta de ejecución de comandos.
-- Pide confirmación antes de alterar archivos críticos de configuración del sistema.
-- Está ESTRICTAMENTE PROHIBIDO intentar sincronizar el repositorio con servicios remotos. No ejecutes comandos como `jj git push` o similares. Todos los cambios deben permanecer estrictamente en el entorno local de trabajo.
+## nix-darwin
+
+- `nix-darwin/.config/nix-darwin/` tiene un flake Nix para paquetes y config del sistema
+- Comandos útiles (desde ese directorio):
+  - `just darwin` — aplicar configuración
+  - `just darwin-debug` — aplicar con trazas
+  - `just up` — `nix flake update`
+  - `just gc` — recolector de basura
+  - `just fmt` — formatear `.nix`
+
+## Comportamiento del agente
+
+- Pide confirmación antes de alterar archivos críticos del sistema
+- Si no estás seguro de un flag de `jj` o `stow`, corre `--help` primero
+- Sé conciso y responde corto
