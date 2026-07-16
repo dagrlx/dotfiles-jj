@@ -1,0 +1,8 @@
+id = "03E8316F-205D-40F3-98A5-B7789EC6DE2A"
+order = 5
+
+[match]
+bundleId = "io.playcover.PlayCover"
+
+[effect]
+layout = "float"

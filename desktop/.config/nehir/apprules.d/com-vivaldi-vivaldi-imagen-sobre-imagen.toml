@@ -1,0 +1,11 @@
+id = "2944539C-1F48-472E-90CB-4A3353AC262C"
+order = 8
+
+[match]
+bundleId = "com.vivaldi.Vivaldi"
+titleSubstring = "Imagen sobre Imagen"
+axRole = "AXWindow"
+axSubrole = "AXStandardWindow"
+
+[effect]
+manage = "ignore"

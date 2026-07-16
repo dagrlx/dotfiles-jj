@@ -1,0 +1,8 @@
+id = "A9463899-E657-4DCB-AE15-BDC2045ADE49"
+order = 6
+
+[match]
+bundleId = "com.vivaldi.Vivaldi.app.oiocllghmdadfpahmllbbhkgjfmaidmm"
+
+[effect]
+assignToWorkspace = "5"

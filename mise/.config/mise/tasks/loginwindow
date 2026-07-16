@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# mi-task: loginwindow
+# description: Configura de forma segura el loginwindow con privilegios de sistema
+
+echo "🔒 Configurando pantalla de inicio de sesión..."
+sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
+sudo defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -bool true
+sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText -string "Dios es bueno"

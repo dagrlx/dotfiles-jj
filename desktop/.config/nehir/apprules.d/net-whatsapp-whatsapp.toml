@@ -1,0 +1,8 @@
+id = "5D012EE2-FDE6-47E2-94B0-95D306D458D1"
+order = 3
+
+[match]
+bundleId = "net.whatsapp.WhatsApp"
+
+[effect]
+assignToWorkspace = "6"

@@ -1,0 +1,25 @@
+{
+  "trustedtaps": [
+    "abue-ammar/tinycast",
+    "anomalyco/tap",
+    "augani/dory",
+    "barutsrb/tap",
+    "guria/tap",
+    "https://github.com/hewigovens/tap.git",
+    "iliyami/macsai",
+    "mhaeuser/mhaeuser",
+    "netbirdio/tap",
+    "olets/tap",
+    "pkgxdev/made",
+    "sinelaw/fresh",
+    "thezoraiz/ascii-image-converter",
+    "tw93/tap"
+  ],
+  "trustedformulae": [
+    "jzelinskie/duckdns/duckdns",
+    "olets/tap/zsh-abbr"
+  ],
+  "trustedcasks": [
+    "tabularisdb/tabularis/tabularis"
+  ]
+}

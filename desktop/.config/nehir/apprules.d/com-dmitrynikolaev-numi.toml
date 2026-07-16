@@ -1,0 +1,10 @@
+id = "2B7D8A46-64B9-4AE0-801B-B6CDA55A4498"
+order = 9
+
+[match]
+bundleId = "com.dmitrynikolaev.numi"
+axRole = "AXWindow"
+axSubrole = "AXStandardWindow"
+
+[effect]
+layout = "float"

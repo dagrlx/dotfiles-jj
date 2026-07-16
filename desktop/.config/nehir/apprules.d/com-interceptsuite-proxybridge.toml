@@ -1,0 +1,10 @@
+id = "6AFC4C66-0F0E-40A2-96BB-1B1E60DE5D17"
+order = 10
+
+[match]
+bundleId = "com.interceptsuite.ProxyBridge"
+axRole = "AXWindow"
+axSubrole = "AXStandardWindow"
+
+[effect]
+layout = "float"

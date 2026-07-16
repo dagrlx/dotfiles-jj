@@ -1,0 +1,8 @@
+id = "E97556CC-3E5C-4FC2-8A2F-0A8A286A1C4A"
+order = 2
+
+[match]
+bundleId = "com.nuvio.hub"
+
+[effect]
+layout = "float"

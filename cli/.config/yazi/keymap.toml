@@ -121,3 +121,8 @@ desc = "open with duckdb"
 on = ["g", "u"]
 run = "plugin duckdb -ui"
 desc = "open with duckdb ui"
+
+[[mgr.prepend_keymap]]
+on = ["c", "a", "a"]
+run = "plugin compress"
+desc = "Archive selected files"

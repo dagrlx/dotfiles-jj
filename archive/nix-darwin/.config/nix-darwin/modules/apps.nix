@@ -41,7 +41,7 @@
     enable = true;
     global = {
     autoUpdate = false;
-    brewfile = true;
+    # brewfile = true;
     };
     #macOS pone en cuarentena las aplicaciones descargadas de internet para mayor seguridade
     # caskArgs.no_quarantine = true;
@@ -54,7 +54,7 @@
       upgrade = true;
       # Type: one of “none”, “check”, “uninstall”, “zap”
       # 'zap': uninstalls all formulae(and related files) not listed here
-      cleanup = "uninstall";
+      cleanup = "none";
     };
 
     # Applications to install from Mac App Store using mas.
@@ -123,10 +123,10 @@
         name = "TheZoraiz/ascii-image-converter";
         trusted = true;
       }
-      {
-        name = "alienator88/cask";
-        trusted = true;
-      }
+      # {
+      #   name = "alienator88/cask";
+      #   trusted = true;
+      # }
       {
         name = "pkgxdev/made";
         trusted = true;
@@ -194,16 +194,17 @@
       "sniffnet"
       "btop" # monitoreo de recursos
       "sshs" # List and connect to hosts using ~/.ssh/config.
-      
+      "starship"
 
-      # CONTAINERS Y VM
+
+      CONTAINERS Y VM
       "podman"
       "podlet"
       "lima"
       "container" # Native container of Macos 
       "container-compose"
 
-      # PLUGINS ZSH
+      PLUGINS ZSH
       "zsh-abbr"
       "zsh-autocomplete"
       "zsh-syntax-highlighting"
@@ -243,24 +244,24 @@
       "go"
       "rust"
 
-      # "sketchybar"
-      # "switchaudio-osx"
-      # "nowplaying-cli"
-      # "borders"
-      # "rift"
+      "sketchybar"
+      "switchaudio-osx"
+      "nowplaying-cli"
+      "borders"
+      "rift"
 
       "nushell"
       "fish"
       "fisher"
 
-      #CONTROL VERSIONES - DOTFILES
-      #"chezmoi"
+      CONTROL VERSIONES - DOTFILES
+      "chezmoi"
       "stow"
       "jj" # jujutsu
       #"yadm"
       "age" # Is a simple, modern and secure file encryption tool, format, and Go library.
       #"atuin" # Shell history with SQLite
-      "gh" # github cli. Se usa en pluing git sketchybar
+      "gh" # github cli
 
       "talosctl"
       #"ntfs-3g-mac"
@@ -296,17 +297,17 @@
       #  name = "opera";
       #  greedy = true;
       #}
-      {
-        name = "deepl";
-        greedy = true;
-      }
+      # {
+      #   name = "deepl";
+      #   greedy = true;
+      # }
 
       "vivaldi"
 
       # Desarrollo y scripts
       #"visual-studio-code"
       "zed"
-      "devpod"
+      # "devpod"
       # A native macOS GUI for Jujutsu
       "jayjay"  # hewigovens/tap/jayjay
 
@@ -328,7 +329,7 @@
 
       # Utilities
       "localsend"
-      "landrop"
+      # "landrop"
       "keka"
       "KnockKnock"
       #"kopiaui"
@@ -359,15 +360,16 @@
 
       "MonitorControl"
       "pearcleaner" # mac app cleaner
-      "sentinel-app" # A GUI for controlling Gatekeeper
+      "alienator88-sentinel"  # A GUI for controlling Gatekeeper
+      # "sentinel-app" # A GUI for controlling Gatekeeper
       "mac-sai"
       "rclone-ui"
       #"ubersicht"
 
       #Terminales
       #"wave" # terminal con AI alternativa a warp y es software libre
-      "kitty"
-      "cmux"
+      # "kitty"
+      # "cmux"
       #"rio"
 
       "keepassxc"
@@ -376,7 +378,7 @@
       "teamviewer"
       "anydesk"
       "orbstack" # Docker y MV
-      "Augani/dory/dory"  # Conainter macos, Docker y VM
+      "augani/dory/dory"  # Conainter macos, Docker y VM
       "appcleaner"
       #"diffusionbee" # Create Amazing Images Using AI
       #"authy"

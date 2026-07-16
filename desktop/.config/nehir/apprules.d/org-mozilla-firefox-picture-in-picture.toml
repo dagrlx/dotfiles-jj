@@ -1,0 +1,6 @@
+id = "C33C0357-A227-43D0-9A44-7F3DBACFA6D8"
+order = 7
+
+[match]
+bundleId = "org.mozilla.firefox"
+titleSubstring = "Picture-in-Picture"

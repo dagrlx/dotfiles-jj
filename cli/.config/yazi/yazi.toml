@@ -1,0 +1,2 @@
+[shell]
+shell = "/bin/zsh" # O "/bin/bash" según tu shell preferido

@@ -1,0 +1,8 @@
+id = "DA4C1CD2-C01A-4217-9414-FA52040C0013"
+order = 4
+
+[match]
+bundleId = "org.keepassxc.keepassxc"
+
+[effect]
+layout = "float"

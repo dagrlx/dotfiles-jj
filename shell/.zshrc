@@ -7,21 +7,28 @@ if command -v brew >/dev/null; then
 fi
 
 # Primero Homebrew, luego Nix
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/run/current-system/sw/bin:$HOME/.nix-profile/bin:$PATH"
+# export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/run/current-system/sw/bin:$HOME/.nix-profile/bin:$PATH"
+export PATH="$HOME/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+
 ##export PATH=/run/current-system/sw/bin:$HOME/.nix-profile/bin:$PATH
-if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-fi
+# if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+#   . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+# fi
+
+eval "$(mise activate zsh)"
+eval "$(mise env)"
 
 # Bun
-if [ -d "$HOME/.bun/bin" ]; then
-  path=("$HOME/.bun/bin" $path)
-fi
+# if [ -d "$HOME/.bun/bin" ]; then
+#   path=("$HOME/.bun/bin" $path)
+# fi
 
 # LM Studio
 if [ -d "$HOME/.lmstudio/bin" ]; then
   path=("$HOME/.lmstudio/bin" $path)
 fi
+
+export GITHUB_TOKEN="$(gh auth token 2>/dev/null)"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 
@@ -70,8 +77,6 @@ if [[ ! -f ~/.zcompdump ]] || [[ ~/.zshrc -nt ~/.zcompdump ]]; then
 fi
 
 autoload -Uz compinit && compinit -d ~/.zcompdump
-# zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
-#zstyle ':completion:*' format $'\e[48;5;232m\e[1;37m %d \e[0m'
 # Habilitar menú de selección en completado
 zstyle ':completion:*' menu yes select search
 zstyle ':completion:*' complete-options true
@@ -81,6 +86,7 @@ zstyle ':completion:*' complete-options true
 # ========== Carapace ==========
 export CARAPACE_BRIDGES='zsh,fish,bash'
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+zstyle ':completion:*' group-order 'main commands' 'alias commands' 'external commands'
 source <(carapace _carapace)
 
 # --- Autocompletacion dinamica para jujutsu
@@ -101,20 +107,23 @@ esac
 
 ## Variable para nh
 #export nh_darwin_flake=/Users/dgarciar/.config/nix-darwin
-export NH_DARWIN_FLAKE="$HOME/.dotfiles-jj/nix-darwin/.config/nix-darwin"
+# export NH_DARWIN_FLAKE="$HOME/.dotfiles-jj/nix-darwin/.config/nix-darwin"
 
 # ========== Aliases ==========
 alias rustscan="docker run -it --rm --name rustscan --platform linux/amd64 rustscan/rustscan"
 alias ...="cd ../.."
-alias ngc="nix-collect-garbage -d"
-alias sgc="sudo nix-collect-garbage -d"
-alias dlg="darwin-rebuild --list-generations"
+# alias ngc="nix-collect-garbage -d"
+# alias sgc="sudo nix-collect-garbage -d"
+# alias dlg="darwin-rebuild --list-generations"
 alias bcp0="brew cleanup --prune=0"
+alias bcpall="brew cleanup -s --prune=all"
+alias brewup='brew bundle --file=~/.config/mise/Brewfile --upgrade && brew cleanup -s'
+alias miseup='mise bootstrap --yes && mise cache clear'
 alias brew-up="brew update && brew upgrade && brew upgrade --cask --greedy"
 alias n="nano -clS"
 alias cat="bat"
-alias gp="git push origin main"
-alias dots='git --git-dir=$HOME/.my-dotfiles --work-tree=$HOME'
+# alias gp="git push origin main"
+# alias dots='git --git-dir=$HOME/.my-dotfiles --work-tree=$HOME'
 alias fzn='fzf --read0 --print0 --preview "bat --style=numbers --color=always {}" | xargs -0 nvim'
 alias skn="sk --read0 --print0 --preview 'bat --style=numbers --color=always {}' | xargs -n1 nvim"
 alias sshtp="TERM=xterm-256color ssh -o ProxyJump=sabaext"
@@ -140,10 +149,15 @@ eval "$(starship init zsh)"
 
 eval "$(direnv hook zsh)"
 
+
 # >>> llmtrim >>>
-export HTTPS_PROXY="http://127.0.0.1:43117"
-export HTTP_PROXY="http://127.0.0.1:43117"
-export NO_PROXY="localhost,127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,169.254.0.0/16,fd00::/8,*.local"
-export no_proxy="localhost,127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,169.254.0.0/16,fd00::/8,*.local"
-export NODE_EXTRA_CA_CERTS="/Users/dgarciar/.llmtrim/ca.pem"
+if command -v llmtrim >/dev/null 2>&1 && llmtrim _alive 2>/dev/null; then
+    export HTTPS_PROXY="http://127.0.0.1:43117"
+    export HTTP_PROXY="http://127.0.0.1:43117"
+    export NO_PROXY="localhost,127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,169.254.0.0/16,fd00::/8,*.local"
+    export no_proxy="localhost,127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,169.254.0.0/16,fd00::/8,*.local"
+    export NODE_EXTRA_CA_CERTS="/Users/dgarciar/.llmtrim/ca.pem"
+    export SSL_CERT_FILE="/Users/dgarciar/.llmtrim/ca-bundle.pem"
+    export CURL_CA_BUNDLE="/Users/dgarciar/.llmtrim/ca-bundle.pem"
+fi
 # <<< llmtrim <<<

@@ -3,18 +3,18 @@
 set -gx XDG_CONFIG_HOME "$HOME/.config"
 set -gx STARSHIP_CONFIG "$XDG_CONFIG_HOME/starship/starship.toml"
 set -gx GHOSTTY_CONFIG "$HOME/.config/ghostty/config"
-set -gx NH_DARWIN_FLAKE "$HOME/.config/nix-darwin"
+#set -gx NH_DARWIN_FLAKE "$HOME/.config/nix-darwin"
 set -gx CARAPACE_BRIDGES 'zsh,fish,bash'
 set -gx _ZO_ECHO 1
 set -gx _ZO_RESOLVE_SYMLINKS 1
-set -gx NH_DARWIN_FLAKE "$HOME/.dotfiles-jj/nix-darwin/.config/nix-darwin"
+#set -gx NH_DARWIN_FLAKE "$HOME/.dotfiles-jj/nix-darwin/.config/nix-darwin"
 
 # PATH moderno (fish_add_path evita duplicados automáticamente)
+fish_add_path "$HOME/.local/bin"
 fish_add_path /opt/homebrew/bin /opt/homebrew/sbin
-fish_add_path /run/current-system/sw/bin
-fish_add_path "$HOME/.nix-profile/bin"
+# fish_add_path /run/current-system/sw/bin  # Nix-darwi  # Nix-darwinn
+#fish_add_path "$HOME/.nix-profile/bin"
 fish_add_path "$HOME/.lmstudio/bin"
-fish_add_path "$HOME/.bun/bin"
 
 # Homebrew (detecta shell y exporta set -gx automáticamente)
 if command -q brew
@@ -22,9 +22,9 @@ if command -q brew
 end
 
 # Nix daemon (Bass para compatibilidad con script Bash)
-if test -f '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-    bass source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-end
+#if test -f '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+#    bass source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+#end
 
 # Límite de archivos abiertos
 ulimit -n 4096
@@ -36,17 +36,19 @@ abbr -a v nvim
 # abbr -a gco "git checkout"
 
 # Aliases (disponibles también en scripts/sesiones no interactivas)
-alias dots='git --git-dir=$HOME/.my-dotfiles --work-tree=$HOME'
+#alias dots='git --git-dir=$HOME/.my-dotfiles --work-tree=$HOME'
 alias rustscan="docker run -it --rm --name rustscan --platform linux/amd64 rustscan/rustscan"
 alias ...="cd ../.."
-alias ngc="nix-collect-garbage -d"
-alias sgc="sudo nix-collect-garbage -d"
-alias dlg="darwin-rebuild --list-generations"
+#alias ngc="nix-collect-garbage -d"
+#alias sgc="sudo nix-collect-garbage -d"
+#alias dlg="darwin-rebuild --list-generations"
 alias bcp0="brew cleanup --prune=0"
-alias brew-up="brew update && brew upgrade && brew upgrade --cask --greedy"
+alias brewup='brew bundle --file=~/.config/mise/Brewfile --upgrade && brew cleanup -s'
+alias miseup='mise bootstrap --yes && mise cache clear'
+# alias brew-up="brew update && brew upgrade && brew upgrade --cask --greedy"
 alias n="nano -clS"
 alias cat="bat"
-alias gp="git push origin main"
+# alias gp="git push origin main"
 alias fzn="fzf --read0 --print0 --preview 'bat --style=numbers --color=always {}' | xargs -0 nvim"
 alias skn="sk --read0 --print0 --preview 'bat --style=numbers --color=always {}' | xargs -n1 nvim"
 alias sshtp="TERM=xterm-256color ssh -o ProxyJump=sabaext"
@@ -64,6 +66,7 @@ alias ns='nu -l'
 # ================= INTERACTIVE SESSIONS ONLY =================
 if status is-interactive
     # Inicialización de herramientas
+    mise activate fish | source
     atuin init fish --disable-up-arrow | source
     starship init fish | source
     zoxide init fish --cmd cd | source

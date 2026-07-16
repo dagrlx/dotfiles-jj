@@ -1,0 +1,204 @@
+# ~/.config/mise/config.toml
+#
+# ⚠️ Corre siempre primero: mise bootstrap --yes --dry-run
+
+[settings]
+experimental = true
+system_deps = "prompt"     # pregunta antes de instalar deps del sistema que falten
+minimum_release_age = "1h" # se puedes poner "1s", "1h", "12h", etc.
+
+[env]
+EDITOR = "nvim"
+VISUAL = "nvim"
+
+# ---------------------------------------------------------------------------
+# macOS DEFAULTS — (dock/finder/trackpad)
+# ---------------------------------------------------------------------------
+[bootstrap.macos.dock]
+autohide = true
+orientation = "bottom"
+tilesize = 40
+
+[bootstrap.macos.finder]
+show_pathbar = true
+
+[bootstrap.macos.defaults.NSGlobalDomain]
+"com.apple.swipescrolldirection" = true
+"com.apple.sound.beep.feedback" = 0
+AppleInterfaceStyleSwitchesAutomatically = true
+AppleKeyboardUIMode = 3
+NSWindowShouldDragOnGesture = true
+NSAutomaticWindowAnimationsEnabled = false
+"com.apple.keyboard.fnState" = false
+
+[bootstrap.macos.defaults."com.apple.dock"]
+autohide-delay = 0.0
+autohide-time-modifier = 0.15
+showhidden = true
+show-recents = false
+enable-spring-load-actions-on-all-items = true
+appswitcher-all-displays = true
+expose-group-apps = false
+mru-spaces = false
+magnification = false
+minimize-to-application = true
+
+[bootstrap.macos.defaults."com.apple.finder"]
+_FXShowPosixPathInTitle = true
+AppleShowAllFiles = true
+AppleShowAllExtensions = true
+FXEnableExtensionChangeWarning = false
+FXPreferredViewStyle = "Nlsv"
+FXDefaultSearchScope = "SCcf"
+QuitMenuItem = true
+ShowStatusBar = true
+ShowExternalHardDrivesOnDesktop = true
+ShowHardDrivesOnDesktop = false
+ShowMountedServersOnDesktop = false
+ShowRemovableMediaOnDesktop = true
+_FXSortFoldersFirst = true
+
+[bootstrap.macos.defaults."com.apple.AppleMultitouchTrackpad"]
+TrackpadRightClick = true
+
+[bootstrap.macos.defaults."com.apple.driver.AppleBluetoothMultitouch.trackpad"]
+TrackpadRightClick = true
+
+[bootstrap.macos.defaults."com.apple.desktopservices"]
+DSDontWriteNetworkStores = true
+DSDontWriteUSBStores = true
+
+[bootstrap.macos.defaults."com.apple.spaces"]
+spans-displays = false
+
+[bootstrap.macos.defaults."com.apple.screensaver"]
+askForPassword = 1
+askForPasswordDelay = 0
+
+[bootstrap.macos.defaults."com.apple.screencapture"]
+location = "~/Desktop/captures"
+type = "png"
+
+[bootstrap.macos.defaults."com.apple.AdLib"]
+allowApplePersonalizedAdvertising = false
+forceLimitAdTracking = true
+allowIdentifierForAdvertising = false
+
+[bootstrap.macos.defaults."com.apple.ImageCapture"]
+disableHotPlug = true
+
+[bootstrap.macos.defaults."com.apple.menuextra.clock"]
+Show24Hour = true
+
+# ---------------------------------------------------------------------------
+# HOOKS — todo lo que nix-darwin hacía y que no tiene sección declarativa
+# en mise: TouchID para sudo, timezone, hostname.
+# ---------------------------------------------------------------------------
+[bootstrap.hooks.pre-packages]
+run = [
+  "echo '==> Iniciando bootstrap de dgarciar en' $(hostname)",
+  # Si 'homebrew' no existe, lo instala de forma desatendida antes de que mise continúe
+  "command -v brew &>/dev/null || (/bin/bash -c '$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)' < /dev/null)",
+]
+
+[bootstrap.hooks.post-packages]
+# run = ["~/.config/mise/scripts/brew_cli_packages.sh"]
+# run = ["brew bundle --file=~/.config/mise/Brewfile"]
+run = ["brew bundle"]
+
+[bootstrap.hooks.post-defaults]
+run = [
+  "~/.config/mise/tasks/loginwindow",
+  "killall Dock Finder SystemUIServer 2>/dev/null || true",
+]
+
+[bootstrap.hooks.final]
+run = [
+  "sudo scutil --set ComputerName 'enocm1'",
+  "sudo scutil --set HostName 'enocm1'",
+  "sudo scutil --set LocalHostName 'enocm1'",
+  "sudo systemsetup -settimezone America/Santiago",
+]
+
+[tasks.update-brewfile]
+description = "Actualiza apps declaradas en Brewfile"
+run = "brew bundle --global --upgrade"
+
+[shell_alias]
+ls = "eza --group-directories-first --icons"
+ll = "eza -l --group-directories-first --icons"
+la = "eza -la --group-directories-first --icons"
+lt = "eza --tree --level=2 --icons"
+l = "eza -l --group-directories-first --icons"
+
+[tools]
+node = "lts"
+pipx = "latest"
+uv = "latest"
+rust = "latest"
+usage = "latest"
+
+# --- red / descargas ---
+curlie = "latest"
+xh = "latest"     # Sustituto de httpie
+rclone = "latest"
+
+# # --- coreutils / shell utils ---
+coreutils = "latest"
+ripgrep = "latest"
+jq = "latest"
+fzf = "latest"
+fd = "latest"
+dust = "latest"
+kubectl = "latest"
+awscli = "latest"
+carapace = "latest"
+eza = "latest"
+
+# # --- sistema / monitoreo ---
+fastfetch = "latest"
+direnv = "latest"
+ansible = "latest"
+talosctl = "latest"
+
+# # --- editores ---
+neovim = "latest"
+bob = "latest"
+
+# # --- file managers / preview ---
+superfile = "latest"
+yazi = "latest"
+ffmpeg = "latest"
+resvg = "latest"
+imagemagick = "latest"
+"github:ip7z/7zip" = "latest"
+
+# # --- neovim deps / lenguajes ---
+tree-sitter = "latest"
+go = "latest"
+
+# # --- dotfiles / vcs ---
+jj = "latest"
+age = "latest"
+# git = "latest"
+gh = "latest"
+
+# # --- agentes / LLM CLI ---
+opencode = "latest"
+herdr = "latest"
+pi = "latest"
+
+# # --- package managers alternos ---
+deno = "latest"
+bun = "latest"
+
+# # --- cli utils ---
+bat = "latest"
+lazygit = "latest"
+starship = "latest"
+zoxide = "latest"
+atuin = "latest"
+lazyssh = "latest"
+
+# Para nvim
+"github:TheZoraiz/ascii-image-converter" = "latest"

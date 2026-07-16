@@ -1,0 +1,151 @@
+# Actualiza apps declaradas en Brewfile
+# brew bundle --file=~/.config/mise/Brewfile --upgrade
+
+# Desintalas las apps que no estan en Brewfile
+# brew bundle --file=~/.config/mise/Brewfile --cleanup (depresiado)
+# brew bundle cleanup --force --file=~/.config/mise/Brewfile
+
+# Autoremove y purga de cachés residuales
+# brew autoremove
+# brew cleanup -s --prune=all
+
+# Taps
+# tap "jzelinskie/duckdns"
+tap "olets/tap", trusted: true
+tap "mhaeuser/mhaeuser", trusted: true
+tap "tw93/tap", trusted: true
+tap "anomalyco/tap", trusted: true
+tap "barutsrb/tap", trusted: true
+tap "hewigovens/tap", trusted: true
+tap "guria/tap", trusted: true
+tap "augani/dory", trusted: true
+tap "iliyami/macsai", trusted: true
+tap "netbirdio/tap", trusted: true
+tap "TheZoraiz/ascii-image-converter"
+tap "pkgxdev/made", trusted: true
+tap "sinelaw/fresh", trusted: true
+
+
+# --- FÓRMULAS CLI --
+brew "jzelinskie/duckdns/duckdns", trusted: true
+
+# --- red / descargas ---
+brew "iproute2mac"
+brew "nmap"
+brew "sniffnet"
+brew "curl"
+brew "wget"
+brew "netbird"
+
+# --- coreutils / shell utils ---
+brew "fping"
+brew "procs"
+brew "tealdeer"
+brew "tree"
+brew "gnu-sed"          # gnused
+brew "gnu-tar"          # gnutar
+brew "gnupg"
+brew "ca-certificates" # cacert
+brew "git"
+brew "btop"
+brew "htop"
+brew "mole"
+
+# --- contenedores / VMs ---
+brew "container"
+brew "container-compose"
+
+# --- editores ---
+brew "nano"
+brew "nanorc"
+brew "fresh-editor"
+
+# --- file managers / preview ---
+brew "poppler"
+
+# --- neovim deps / lenguajes ---
+brew "tree-sitter-cli"
+
+# --- shells ---
+brew "nushell"
+brew "fish"
+brew "fisher"
+brew "fish-lsp"
+
+# --- plugins zsh ---
+brew "zsh-autocomplete"
+brew "zsh-syntax-highlighting"
+brew "zsh-autosuggestions"
+brew "zsh-abbr"
+brew "zsh-autosuggestions-abbreviations-strategy"
+
+# --- dotfiles / vcs ---
+brew "stow"
+
+# --- macOS específicos ---
+brew "pam-reattach"
+
+# --- package managers alternos ---
+brew "pkgx"
+
+# Casks
+cask "deepl"
+cask "zed"
+cask "devpod"
+cask "windows-app"
+cask "syncthing-app"
+cask "tailscale-app"
+cask "localsend"
+cask "landrop"
+cask "knockknock"
+cask "imageoptim"
+cask "uninstallpkg"
+cask "alienator88-sentinel"
+cask "rclone-ui"
+cask "anydesk"
+cask "appcleaner"
+cask "numi"
+cask "postman"
+cask "bruno"
+cask "grandperspective"
+cask "keycastr"
+cask "hyperkey"
+cask "karabiner-elements"
+cask "keyclu"
+cask "cleanupbuddy"
+cask "obsidian"
+cask "thaw"
+cask "shottr"
+cask "shortcat"
+cask "lm-studio"
+cask "ollama-app"
+cask "lulu"
+# cask "freelens"
+# # cask "jayjay"
+cask "app-detective"
+cask "nehir@rc"
+cask "dory"
+cask "mac-sai"
+cask "netbird-ui"
+cask "omniwm"
+cask "gpt4all"
+cask "keka"
+cask "microsoft-auto-update"
+# cask "brilliant"
+cask "keepassxc"
+cask "teamviewer"
+cask "zoom"
+cask "google-drive"
+cask "firefox"
+cask "vivaldi"
+#
+# # Fonts
+cask "font-hack-nerd-font"
+cask "font-sf-pro"
+cask "sf-symbols"
+cask "font-sf-mono"
+cask "font-blex-mono-nerd-font"
+cask "font-symbols-only-nerd-font"
+cask "font-jetbrains-mono-nerd-font"
+cask "font-fira-code-nerd-font"
+cask "font-iosevka-nerd-font"

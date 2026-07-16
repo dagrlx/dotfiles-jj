@@ -102,7 +102,7 @@
 
     nix-index = {
       enable = true;
-      enableZshIntegration = true;
+      enableZshIntegration = false;
     };
 
     htop.enable = true;
@@ -121,43 +121,20 @@
       settings = {updates = {auto_update = true;};};
     };
 
-    # lf = {
-    #   enable = true;
-    #
-    #   settings = {
-    #     preview = true;
-    #     hidden = true;
-    #     drawbox = true;
-    #     icons = true;
-    #     ignorecase = true;
-    #   };
-    # };
-
+    
     # A modern replacement for ‘ls’
-    # useful in bash/zsh prompt, not in nushell.
-    # En 23.11 cambio exa por eza
     eza = {
       enable = true;
-      enableZshIntegration =
-        true; # enableAliases fue sustiuida por enableZshIntegration
+      enableZshIntegration = true; # enableAliases fue sustiuida por enableZshIntegration
       git = true;
       icons = "auto";
     };
-
-    starship = {
-      enable = true;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
-      enableNushellIntegration = true;
-    };
-
-    # zellij = {
+    #
+    # starship = {
     #   enable = true;
-    #   enableBashIntegration = false;
-    #   enableZshIntegration = false;
-    #   settings = {
-    #     theme = "catppuccin-macchiato";
-    #   };
+    #   enableBashIntegration = true;
+    #   enableZshIntegration = true;
+    #   enableNushellIntegration = true;
     # };
 
     ripgrep = {
@@ -174,12 +151,12 @@
 
     # skim provides a single executable: sk.
     # Basically anywhere you would want to use grep, try sk instead.
-    skim = {
-      enable = true;
-      #  enableBashIntegration = true;
-      enableZshIntegration = true;
-      defaultOptions = ["--height 50%" "--prompt >"];
-    };
+    # skim = {
+    #   enable = true;
+    #   #  enableBashIntegration = true;
+    #   enableZshIntegration = true;
+    #   defaultOptions = ["--height 50%" "--prompt >"];
+    # };
 
     zoxide = {
       enable = true;
@@ -190,16 +167,6 @@
         "--cmd cd"
       ];
     };
-
-    #yazi = {
-    #  enable = true;
-    #  enableZshIntegration = true;
-    #};
-
-    #thefuck = {
-    #  enable = true;
-    #  enableZshIntegration = true;
-    #};
 
     # direnv = {
     #   enable = true;

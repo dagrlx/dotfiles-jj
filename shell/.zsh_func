@@ -1,13 +1,13 @@
 # ~/config/nix-darwin/home/func_zsh
 
-function brew() {
-    command brew "$@"  # Ejecuta el comando brew original
-
-    # Actualizar el widget si el comando afecta el estado de los paquetes
-    if [[ "$1" == "outdated" || "$1" == "upgrade" || "$1" == "update" || "$*" =~ "--cask" || "$*" =~ "--greedy" ]]; then
-        sketchybar --trigger brew_update
-    fi
-}
+# function brew() {
+#     command brew "$@"  # Ejecuta el comando brew original
+#
+#     # Actualizar el widget si el comando afecta el estado de los paquetes
+#     if [[ "$1" == "outdated" || "$1" == "upgrade" || "$1" == "update" || "$*" =~ "--cask" || "$*" =~ "--greedy" ]]; then
+#         sketchybar --trigger brew_update
+#     fi
+# }
 # function brew() {
 #   command brew "$@"
 #   if [[ $* =~ "upgrade" ]] || [[ $* =~ "update" ]] || [[ $* =~ "outdated" ]]; then
