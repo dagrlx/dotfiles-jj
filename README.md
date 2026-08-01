@@ -4,8 +4,8 @@ Managed with:
 
 - jj (Jujutsu git)
 - GNU Stow
-- Nix Home Manager
-- Nix-Darwim
+- mise
+- Brew file
 
 ## Structure
 
@@ -15,11 +15,21 @@ Managed with:
 - editors
 - archive
 - nvim
-- nix-darwin
+- mise
+- brew
 
 ## Setup
 
 ```bash
-stow shell terminals cli editors
-```
+curl https://mise.run | sh
 
+mise install stow@latest
+mise install jujutsu@latest 
+
+jj git clone https://github.com/dagrlx/dotfiles-jj.git ~/.dotfiles-jj
+cd ~/.dotfiles-jj
+
+stow -R shell terminals cli editors archive nvim mise brew
+
+mise bootstrap --yes
+```
