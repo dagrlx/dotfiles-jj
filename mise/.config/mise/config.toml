@@ -6,10 +6,43 @@
 experimental = true
 system_deps = "prompt"     # pregunta antes de instalar deps del sistema que falten
 minimum_release_age = "1h" # se puedes poner "1s", "1h", "12h", etc.
+# Apunta a la raíz de tu repositorio de dotfiles
+dotfiles.root = "~/.dotfiles-jj"
+# El modo por defecto será "symlink", que es el comportamiento similar a stow
+dotfiles.default_mode = "symlink"
 
 [env]
 EDITOR = "nvim"
 VISUAL = "nvim"
+
+[dotfiles]
+# --- Configuraciones de CLI (shells, terminales, etc.) ---
+"~/.config/fish" = "~/.dotfiles-jj/cli/.config/fish"
+"~/.config/nushell" = "~/.dotfiles-jj/cli/.config/nushell"
+"~/.config/starship" = "~/.dotfiles-jj/cli/.config/starship"
+"~/.config/yazi" = "~/.dotfiles-jj/cli/.config/yazi"
+
+"~/.zshrc" = "~/.dotfiles-jj/shell/.zshrc"
+"~/.zprofile" = "~/.dotfiles-jj/shell/.zprofile"
+"~/.zsh_func" = "~/.dotfiles-jj/shell/.zsh_func"
+
+# --- Configuraciones de Escritorio (macOS) ---
+"~/.config/aerospace" = "~/.dotfiles-jj/desktop/.config/aerospace"
+"~/.config/borders" = "~/.dotfiles-jj/desktop/.config/borders"
+"~/.config/nehir" = "~/.dotfiles-jj/desktop/.config/nehir"
+"~/.config/rift" = "~/.dotfiles-jj/desktop/.config/rift"
+"~/.config/sketchybar" = "~/.dotfiles-jj/desktop/.config/sketchybar"
+
+# --- Editores ---
+"~/.config/nvim" = "~/.dotfiles-jj/nvim/.config/nvim"
+
+# --- Otras herramientas ---
+"~/.config/mise" = "~/.dotfiles-jj/mise/.config/mise"
+"~/.config/homebrew" = "~/.dotfiles-jj/brew/.config/homebrew"
+
+# --- terminals ---
+"~/.config/ghostty" = "~/.dotfiles-jj/terminals/.config/ghostty"
+"~/.config/kitty" = "~/.dotfiles-jj/terminals/.config/kitty"
 
 # ---------------------------------------------------------------------------
 # macOS DEFAULTS — (dock/finder/trackpad)

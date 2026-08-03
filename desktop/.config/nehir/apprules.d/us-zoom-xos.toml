@@ -1,0 +1,8 @@
+id = "7A988D7C-E8EB-4165-9B1D-513335AE6E5E"
+order = 11
+
+[match]
+bundleId = "us.zoom.xos"
+
+[effect]
+assignToWorkspace = "7"
